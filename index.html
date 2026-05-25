@@ -14,6 +14,33 @@
     body{background:#000;overscroll-behavior:none;}
     ::-webkit-scrollbar{width:0;}
   </style>
+
+  <!-- Firebase compat - loads synchronously before React -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script>
+    firebase.initializeApp({
+      apiKey:"AIzaSyB_qeJuDxhh_ROYMBiG3dlQeNu-xqwKFCQ",
+      authDomain:"tripship-5e0fa.firebaseapp.com",
+      projectId:"tripship-5e0fa",
+      storageBucket:"tripship-5e0fa.firebasestorage.app",
+      messagingSenderId:"160115103035",
+      appId:"1:160115103035:web:533a0c34348e8e3afe931e"
+    });
+    const _db=firebase.firestore();
+    window.fbSaveTrip=async function(trip){
+      await _db.collection("trips").doc(trip.id).set(trip,{merge:true});
+    };
+    window.fbLoadTrip=async function(id){
+      const s=await _db.collection("trips").doc(id).get();
+      return s.exists?s.data():null;
+    };
+    window.fbListenTrip=function(id,cb){
+      return _db.collection("trips").doc(id).onSnapshot(s=>{if(s.exists)cb(s.data());});
+    };
+  </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
@@ -352,7 +379,30 @@ function Home({user,trips,onCreate,onOpen,onUpdateUser,toggleTheme,dark}){
     rd.onload=ev=>{ setRawDp(ev.target.result); setDpMenu(false); setDpPrev(true); };
     rd.readAsDataURL(f);
   };
-  const doJoin=()=>{ setJErr(""); const u=jUrl.trim(); if(!u)return; let id=""; if(u.includes("tripId=")){const qs=u.split("?")[1]||""; const m=qs.match(/tripId=([^&]+)/); if(m)id=m[1];} else if(/^[a-z0-9]{6,12}$/i.test(u))id=u; if(!id){setJErr("Invalid link."); return;} const f=loadTrips().find(t=>t.id===id); if(!f){setJErr("No trip found."); return;} onOpen(f); };
+  const [jJoining,setJJoining]=useState(false);
+  const doJoin=async()=>{
+    setJErr(""); setJJoining(true);
+    const u=jUrl.trim(); if(!u){setJJoining(false);return;}
+    let id="";
+    if(u.includes("tripId=")){const qs=u.split("?")[1]||""; const m=qs.match(/tripId=([^&]+)/); if(m)id=m[1];}
+    else if(/^[a-z0-9]{6,12}$/i.test(u)) id=u;
+    if(!id){setJErr("Invalid trip ID."); setJJoining(false); return;}
+    const local=loadTrips().find(t=>t.id===id);
+    if(local){setJJoining(false); onOpen(local); return;}
+    try{
+      const data=await window.fbLoadTrip(id);
+      if(!data){setJErr("No trip found."); setJJoining(false); return;}
+      if(!data.friends.includes(user.name)){
+        data.friends=[...data.friends,user.name];
+        data.memberPhotos={...data.memberPhotos,[user.name]:user.photo||null};
+        window.fbSaveTrip(data).catch(()=>{});
+      }
+      const all=loadTrips(); const idx=all.findIndex(x=>x.id===id);
+      if(idx>=0)all[idx]=data; else all.push(data);
+      saveTrips(all); setTrips(all);
+      setJJoining(false); onOpen(data);
+    }catch(e){ setJErr("Could not join. Try again."); setJJoining(false); }
+  };
   return(
     <Scr>
       <input ref={dpRef} type="file" accept="image/*" style={{display:"none"}} onChange={onDpFile}/>
@@ -434,7 +484,7 @@ function Home({user,trips,onCreate,onOpen,onUpdateUser,toggleTheme,dark}){
             <input style={{width:"100%",padding:"13px 14px",background:"rgba(255,255,255,0.07)",border:`1px solid ${jErr?T.danger:T.border}`,borderRadius:12,color:T.text,fontSize:15,outline:"none",fontFamily:T.fontBody,boxSizing:"border-box",marginBottom:6}} placeholder="Paste trip ID…" value={jUrl} onChange={e=>{setJUrl(e.target.value);setJErr("");}} onKeyDown={e=>e.key==="Enter"&&doJoin()} autoFocus/>
             {jErr&&<div style={{fontSize:12,color:T.danger,marginBottom:8}}>{jErr}</div>}
             <div style={{display:"flex",flexDirection:"column",gap:8,marginTop:8}}>
-              <YBtn onClick={doJoin} disabled={!jUrl.trim()}>Join Trip →</YBtn>
+              <YBtn onClick={doJoin} disabled={!jUrl.trim()||jJoining}>{jJoining?"Joining…":"Join Trip →"}</YBtn>
               <GBtn onClick={()=>{setJoin(false);setJErr("");setJUrl("");}}>← Back</GBtn>
             </div>
           </div>
@@ -454,7 +504,12 @@ function CreateTrip({user,onDone,onBack}){
   const today=new Date().toISOString().split("T")[0];
   const inp={padding:"13px 14px",background:"rgba(255,255,255,0.07)",border:`1px solid ${T.border}`,borderRadius:12,color:T.text,fontSize:15,outline:"none",fontFamily:T.fontBody,width:"100%",boxSizing:"border-box"};
   const addF=()=>{ const n=nf.trim(); if(!n)return; if(friends.includes(n)){setFe("Already added");return;} if(friends.length>=10){setFe("Max 10");return;} setFriends(p=>[...p,n]); setNf(""); setFe(""); };
-  const create=()=>{ const trip={id:genId(),tripName:tn.trim(),destination:dest.trim(),startDate:sd,endDate:ed,cover:cov,coverPhoto:coverPhoto||null,currency:curr,friends,expenses:[],itinerary:[],vault:[],notes:[],memberPhotos:{[user.name]:user.photo||null},createdAt:Date.now()}; const all=[...loadTrips(),trip]; saveTrips(all); onDone(trip); };
+  const create=async()=>{
+    const trip={id:genId(),tripName:tn.trim(),destination:dest.trim(),startDate:sd,endDate:ed,cover:cov,coverPhoto:coverPhoto||null,currency:curr,friends,expenses:[],itinerary:[],vault:[],notes:[],activity:[],trash:[],memberPhotos:{[user.name]:user.photo||null},createdAt:Date.now()};
+    const all=[...loadTrips(),trip]; saveTrips(all);
+    try{ await window.fbSaveTrip(trip); }catch(e){ console.error(e); }
+    onDone(trip);
+  };
   const onCoverFile=e=>{ const f=e.target.files[0]; e.target.value=""; if(!f)return; if(f.size>5*1024*1024){return;} const rd=new FileReader(); rd.onload=ev=>{ setCoverPhoto(ev.target.result); setCoverLoaded(false); }; rd.readAsDataURL(f); };
   if(step===1) return(
     <Scr><div style={{padding:"0 24px 100px"}}>
@@ -649,7 +704,12 @@ function Dashboard({trip:init,user,onBack,toggleTheme,dark}){
   const [sne,setSne]=useState(false); const [nt,setNt]=useState(""); const [nb,setNb]=useState(""); const [enid,setEnid]=useState(null);
   const docR=useRef(null);
 
-  const upd=p=>{ const u={...trip,...p}; setTrip(u); const all=loadTrips(); const i=all.findIndex(t=>t.id===trip.id); if(i>=0)all[i]=u; else all.push(u); saveTrips(all); };
+  const upd=p=>{
+    const u={...trip,...p}; setTrip(u);
+    const all=loadTrips(); const i=all.findIndex(t=>t.id===trip.id);
+    if(i>=0)all[i]=u; else all.push(u); saveTrips(all);
+    try{ window.fbSaveTrip(u); }catch(e){}
+  };
   const addAct=(msg,type="expense")=>{
     const act={id:Date.now(),msg,type,by:user.name,at:Date.now()};
     const all=loadTrips(); const i=all.findIndex(t=>t.id===trip.id);
@@ -769,6 +829,15 @@ function Dashboard({trip:init,user,onBack,toggleTheme,dark}){
     }
   };
   useEffect(()=>{ const now=Date.now(); const days14=14*24*60*60*1000; const tr=(trip.trash||[]); const clean=tr.filter(e=>now-e.deletedAt<days14); if(clean.length!==tr.length){const u={...trip,trash:clean};setTrip(u);const all=loadTrips();const i=all.findIndex(t=>t.id===trip.id);if(i>=0)all[i]=u;saveTrips(all);} },[]);
+  useEffect(()=>{
+    if(!window.fbListenTrip) return;
+    const unsub=window.fbListenTrip(trip.id,data=>{
+      setTrip(prev=>({...prev,...data}));
+      const all=loadTrips(); const i=all.findIndex(t=>t.id===trip.id);
+      if(i>=0){all[i]={...all[i],...data}; saveTrips(all);}
+    });
+    return()=>{ try{unsub();}catch(e){} };
+  },[trip.id]);
   const tsp=f=>setSp(prev=>prev.includes(f)?prev.filter(x=>x!==f):[...prev,f]);
   const saveE=()=>{
     const a=parseFloat(am); if(!py||!a||a<=0||!ds.trim()||sp.length===0)return;
