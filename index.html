@@ -22,13 +22,6 @@
   <div id="root"></div>
   <script type="text/babel">
     const { useState, useEffect, useRef, createContext, useContext } = React;
-    function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
-    function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
-    function loadUser(){ try{ const r=lsGet("ts_user"); return r?JSON.parse(r):null; }catch(e){ return null; } }
-    function loadTrips(){ try{ const r=lsGet("ts_trips"); return r?JSON.parse(r):[]; }catch(e){ return []; } }
-    function saveTrips(t){ lsSet("ts_trips",JSON.stringify(t)); }
-    function saveUser(u){ lsSet("ts_user",JSON.stringify(u)); }
-    function genId(){ return Math.random().toString(36).substr(2,8); }
 
 function getT(dark){
   return dark ? {
