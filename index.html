@@ -15,11 +15,10 @@
     ::-webkit-scrollbar{width:0;}
   </style>
 
-  <!-- Firebase FIRST - before everything else -->
+  <!-- Firebase first -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-
   <script>
     firebase.initializeApp({
       apiKey: "AIzaSyB_qeJuDxhh_ROYMBiG3dlQeNu-xqwKFCQ",
@@ -59,7 +58,7 @@
     });
   </script>
 
-  <!-- React + Babel AFTER Firebase -->
+  <!-- React + Babel after Firebase -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
@@ -78,6 +77,7 @@
     function saveUser(u){ lsSet("ts_user",JSON.stringify(u)); }
     function genId(){ return Math.random().toString(36).substr(2,8); }
 
+    /* ── All Components (Splash, SignIn, ProfileSetup, Home, CreateTrip, TripCreated, Dashboard etc) ── */
 
 function getT(dark){
   return dark ? {
@@ -430,7 +430,7 @@ function Home({user,trips,onCreate,onOpen,onUpdateUser,toggleTheme,dark}){
       if(idx>=0)all[idx]=data; else all.push(data);
       saveTrips(all); setTrips(all);
       setJJoining(false); onOpen(data);
-    }catch(e){ console.error(e); setJErr("Could not join. Try again."); setJJoining(false); }
+    }catch(e){ setJErr("Could not join. Try again."); setJJoining(false); }
   };
   return(
     <Scr>
@@ -536,7 +536,7 @@ function CreateTrip({user,onDone,onBack}){
   const create=async()=>{
     const trip={id:genId(),tripName:tn.trim(),destination:dest.trim(),startDate:sd,endDate:ed,cover:cov,coverPhoto:coverPhoto||null,currency:curr,friends,expenses:[],itinerary:[],vault:[],notes:[],activity:[],trash:[],memberPhotos:{[user.name]:user.photo||null},createdAt:Date.now()};
     const all=[...loadTrips(),trip]; saveTrips(all);
-    try{ await fbSaveTrip(trip); console.log("Trip saved to Firebase!"); }catch(e){ console.error("FB error:",e); }
+    try{ await fbSaveTrip(trip); }catch(e){ console.error("FB save:",e); }
     onDone(trip);
   };
   const onCoverFile=e=>{ const f=e.target.files[0]; e.target.value=""; if(!f)return; if(f.size>5*1024*1024){return;} const rd=new FileReader(); rd.onload=ev=>{ setCoverPhoto(ev.target.result); setCoverLoaded(false); }; rd.readAsDataURL(f); };
@@ -1419,75 +1419,8 @@ function Dashboard({trip:init,user,onBack,toggleTheme,dark}){
 }
 
 /* ── Root ── */
-function App(){
-  const [scr,setScr]=useState("splash");
-  const [user,setUser]=useState(null);
-  const [trips,setTrips]=useState([]);
-  const [cs,setCs]=useState(0);
-  const [at,setAt]=useState(null);
-  const [dark,setDark]=useState(()=>{ try{ return localStorage.getItem("ts_dark")!=="false"; }catch(e){ return true; } });
-  const theme=getT(dark);
-  const toggleTheme=()=>{ const nd=!dark; setDark(nd); try{ localStorage.setItem("ts_dark",String(nd)); }catch(e){} };
 
-  useEffect(()=>{
-    // Inject fonts
-    const link = document.createElement('link');
-    link.rel='stylesheet';
-    link.href='https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Barlow+Condensed:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap';
-    document.head.appendChild(link);
-    // Inject CSS
-    const style = document.createElement('style');
-    style.textContent = `
-      *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-      body{background:#000;}
-      input,select,textarea,button{font-family:'DM Sans',sans-serif;}
-      input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;}
-      ::placeholder{color:rgba(255,255,255,0.25);}
-      ::-webkit-scrollbar{width:0;}
-      @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-      @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-      @keyframes scaleIn{from{opacity:0;transform:scale(0.88)}to{opacity:1;transform:scale(1)}}
-      @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-      @keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
-      .fade-up{animation:fadeUp 0.55s cubic-bezier(.22,1,.36,1) both}
-      .fade-in{animation:fadeIn 0.45s ease both}
-      .scale-in{animation:scaleIn 0.4s cubic-bezier(.34,1.56,.64,1) both}
-      .btn-press:active{transform:scale(0.97);transition:transform 0.1s;}
-      .tag-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:99px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);font-size:13px;cursor:pointer;transition:all 0.18s;}
-      .tag-chip.active{background:#fff;color:#000;border-color:#fff;font-weight:600;}
-      .tag-chip .remove{font-size:14px;color:rgba(0,0,0,0.5);cursor:pointer;}
-    `;
-    document.head.appendChild(style);
-    return ()=>{ try{document.head.removeChild(link);document.head.removeChild(style);}catch(e){} };
-  }, []);
-
-  useEffect(()=>{ const u=loadUser(); if(u?.name)setUser(u); setTrips(loadTrips()); },[]);
-  const go=t=>{ setAt(t); setScr("dash"); };
-  const splashDone=()=>{ const u=loadUser(); if(u?.name){setUser(u);setTrips(loadTrips());setScr("home");}else setScr("signin"); };
-  const signIn=()=>setScr("profile");
-  const profile=d=>{ setUser(d); saveUser(d); setScr("home"); };
-  const openTrip=t=>{ const all=loadTrips(); go(all.find(x=>x.id===t.id)||t); };
-  const tripCreated=t=>{ setAt(t); setCs(3); };
-  const goToTrip=()=>{ setCs(0); go(at); };
-  const backHome=()=>{ setAt(null); setTrips(loadTrips()); setScr("home"); };
-  const updUser=u=>{ setUser(u); saveUser(u); };
-
-  return(
-    <ThemeCtx.Provider value={theme}>
-      <div style={{background:theme.bg,minHeight:"100vh",transition:"background 0.3s"}}>
-        {scr==="splash"&&<Splash onDone={splashDone}/>}
-        {scr==="signin"&&<SignIn onDone={signIn}/>}
-        {scr==="profile"&&<ProfileSetup onDone={profile}/>}
-        {scr==="home"&&user&&cs===0&&<Home user={user} trips={trips} onCreate={()=>setCs(1)} onOpen={openTrip} onUpdateUser={updUser} toggleTheme={toggleTheme} dark={dark}/>}
-        {scr==="home"&&user&&cs===1&&<CreateTrip user={user} onDone={tripCreated} onBack={()=>setCs(0)}/>}
-        {cs===3&&at&&<TripCreated trip={at} onGo={goToTrip}/>}
-        {scr==="dash"&&at&&user&&<Dashboard trip={at} user={user} onBack={backHome} toggleTheme={toggleTheme} dark={dark}/>}
-      </div>
-    </ThemeCtx.Provider>
-  );
-}
-
-
+    /* ── Root App with Firebase ── */
     function App(){
       const [scr,setScr]=useState("splash");
       const [user,setUser]=useState(null);
@@ -1499,27 +1432,30 @@ function App(){
       const toggleTheme=()=>{ const nd=!dark; setDark(nd); try{ localStorage.setItem("ts_dark",String(nd)); }catch(e){} };
 
       useEffect(()=>{
-        // Inject fonts
         const link=document.createElement("link");
         link.rel="stylesheet";
         link.href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@400;500;600&display=swap";
         document.head.appendChild(link);
         const style=document.createElement("style");
-        style.textContent="*{box-sizing:border-box;} input,select,textarea,button{font-family:'DM Sans',sans-serif;} ::placeholder{color:rgba(255,255,255,0.25);}";
+        style.textContent="*{box-sizing:border-box;} input,select,textarea,button{font-family:'DM Sans',sans-serif;} ::placeholder{color:rgba(255,255,255,0.25);} ::-webkit-scrollbar{width:0;}";
         document.head.appendChild(style);
       },[]);
 
       const go=t=>{ setAt(t); setScr("dash"); };
+
       const splashDone=()=>{
         const u=loadUser();
         if(u?.name){ setUser(u); setTrips(loadTrips()); setScr("home"); }
         else setScr("signin");
       };
+
       const signIn=()=>setScr("profile");
+
       const profile=async(d)=>{
         setUser(d); saveUser(d); setScr("home");
         if(window._fbUser?.uid) fbSaveUser(window._fbUser.uid,{name:d.name,gender:d.gender,city:d.city,email:d.email||"",photo:d.photo||null}).catch(()=>{});
       };
+
       const openTrip=t=>{ const all=loadTrips(); go(all.find(x=>x.id===t.id)||t); };
       const tripCreated=t=>{ setAt(t); setCs(3); };
       const goToTrip=()=>{ setCs(0); go(at); };
