@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>TripShip</title>
+  <meta name="theme-color" content="#000000"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="TripShip"/>
+  <link rel="apple-touch-icon" href="data:image/png;base64,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"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+    body{background:#000;font-family:'DM Sans',sans-serif;overscroll-behavior:none;}
+    ::-webkit-scrollbar{width:0;}
+  </style>
+
+  <!-- Firebase FIRST - before everything else -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <script>
+    firebase.initializeApp({
+      apiKey: "AIzaSyB_qeJuDxhh_ROYMBiG3dlQeNu-xqwKFCQ",
+      authDomain: "tripship-5e0fa.firebaseapp.com",
+      projectId: "tripship-5e0fa",
+      storageBucket: "tripship-5e0fa.firebasestorage.app",
+      messagingSenderId: "160115103035",
+      appId: "1:160115103035:web:533a0c34348e8e3afe931e"
+    });
+    const fbAuth = firebase.auth();
+    const fbDb = firebase.firestore();
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+    async function fbSaveTrip(trip) {
+      await fbDb.collection("trips").doc(trip.id).set(trip, {merge:true});
+    }
+    async function fbLoadTrip(id) {
+      const snap = await fbDb.collection("trips").doc(id).get();
+      return snap.exists ? snap.data() : null;
+    }
+    function fbListenTrip(tripId, onChange) {
+      return fbDb.collection("trips").doc(tripId).onSnapshot(snap => {
+        if(snap.exists) onChange(snap.data());
+      });
+    }
+    async function fbDeleteTrip(id) {
+      await fbDb.collection("trips").doc(id).delete();
+    }
+    async function fbSaveUser(uid, data) {
+      await fbDb.collection("users").doc(uid).set(data, {merge:true});
+    }
+
+    fbAuth.onAuthStateChanged(user => {
+      window._fbUser = user;
+      window._fbAuthReady = true;
+      if(window._onAuthReady) window._onAuthReady(user);
+    });
+  </script>
+
+  <!-- React + Babel AFTER Firebase -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef, createContext, useContext } = React;
+
+    function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+    function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+    function loadUser(){ try{ const r=lsGet("ts_user"); return r?JSON.parse(r):null; }catch(e){ return null; } }
+    function loadTrips(){ try{ const r=lsGet("ts_trips"); return r?JSON.parse(r):[]; }catch(e){ return []; } }
+    function saveTrips(t){ lsSet("ts_trips",JSON.stringify(t)); }
+    function saveUser(u){ lsSet("ts_user",JSON.stringify(u)); }
+    function genId(){ return Math.random().toString(36).substr(2,8); }
+
+
+function getT(dark){
+  return dark ? {
+    bg:"#000", surface:"#111", surface2:"#1a1a1a",
+    border:"rgba(255,255,255,0.10)", border2:"rgba(255,255,255,0.18)",
+    text:"#fff", textSub:"rgba(255,255,255,0.50)", textMuted:"rgba(255,255,255,0.28)",
+    accent:"#FFDD57", accentText:"#FFDD57", accentDark:"#c9a800",
+    danger:"#ff6b6b",
+    fontHead:"'Montserrat',sans-serif", fontBody:"'DM Sans',sans-serif",
+    isDark:true,
+  } : {
+    bg:"#f5f5f0", surface:"#ffffff", surface2:"#eeede8",
+    border:"rgba(0,0,0,0.09)", border2:"rgba(0,0,0,0.15)",
+    text:"#111111", textSub:"rgba(0,0,0,0.50)", textMuted:"rgba(0,0,0,0.28)",
+    accent:"#FFDD57", accentText:"#9a7500", accentDark:"#7a5c00",
+    danger:"#e53e3e",
+    fontHead:"'Montserrat',sans-serif", fontBody:"'DM Sans',sans-serif",
+    isDark:false,
+  };
+}
+// Default dark — will be overridden by App via props
+let T = getT(true);
+const ThemeCtx = createContext(getT(true));
+function useT(){ return useContext(ThemeCtx); }
+
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function loadUser(){ try{ const r=lsGet("ts_user"); return r?JSON.parse(r):null; }catch(e){ return null; } }
+function loadTrips(){ try{ const r=lsGet("ts_trips"); return r?JSON.parse(r):[]; }catch(e){ return []; } }
+function saveTrips(t){ lsSet("ts_trips",JSON.stringify(t)); }
+function saveUser(u){ lsSet("ts_user",JSON.stringify(u)); }
+function genId(){ return Math.random().toString(36).substr(2,8); }
+const fmt = n => "₹"+Math.round(n).toLocaleString("en-IN");
+const ini = n => n.split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
+const PAL=[{bg:"#dbeafe",tx:"#1e40af"},{bg:"#dcfce7",tx:"#166534"},{bg:"#fce7f3",tx:"#9d174d"},{bg:"#fef3c7",tx:"#92400e"},{bg:"#ede9fe",tx:"#5b21b6"},{bg:"#fee2e2",tx:"#991b1b"},{bg:"#e0f2fe",tx:"#075985"},{bg:"#fff7ed",tx:"#9a3412"}];
+function pc(name,list){ return PAL[Math.max(0,list.indexOf(name))%PAL.length]; }
+const COVERS=[{id:"ocean",g:"linear-gradient(135deg,#0093E9,#80D0C7)"},{id:"sunset",g:"linear-gradient(135deg,#FF6B35,#F7931E)"},{id:"forest",g:"linear-gradient(135deg,#11998e,#38ef7d)"},{id:"dusk",g:"linear-gradient(135deg,#667eea,#764ba2)"},{id:"golden",g:"linear-gradient(135deg,#F7971E,#FFD200)"},{id:"cherry",g:"linear-gradient(135deg,#eb3349,#f45c43)"}];
+const CURRENCIES=[
+  {code:"INR",symbol:"₹",name:"Indian Rupee"},
+  {code:"USD",symbol:"$",name:"US Dollar"},
+  {code:"EUR",symbol:"€",name:"Euro"},
+  {code:"GBP",symbol:"£",name:"British Pound"},
+  {code:"AED",symbol:"د.إ",name:"UAE Dirham"},
+  {code:"SGD",symbol:"S$",name:"Singapore Dollar"},
+  {code:"THB",symbol:"฿",name:"Thai Baht"},
+  {code:"JPY",symbol:"¥",name:"Japanese Yen"},
+  {code:"CNY",symbol:"¥",name:"Chinese Yuan"},
+  {code:"AUD",symbol:"A$",name:"Australian Dollar"},
+  {code:"CAD",symbol:"C$",name:"Canadian Dollar"},
+  {code:"CHF",symbol:"Fr",name:"Swiss Franc"},
+  {code:"MYR",symbol:"RM",name:"Malaysian Ringgit"},
+  {code:"IDR",symbol:"Rp",name:"Indonesian Rupiah"},
+  {code:"VND",symbol:"₫",name:"Vietnamese Dong"},
+  {code:"KRW",symbol:"₩",name:"South Korean Won"},
+  {code:"NZD",symbol:"NZ$",name:"New Zealand Dollar"},
+  {code:"ZAR",symbol:"R",name:"South African Rand"},
+  {code:"SAR",symbol:"﷼",name:"Saudi Riyal"},
+  {code:"QAR",symbol:"﷼",name:"Qatari Riyal"},
+  {code:"TRY",symbol:"₺",name:"Turkish Lira"},
+  {code:"BRL",symbol:"R$",name:"Brazilian Real"},
+  {code:"MXN",symbol:"$",name:"Mexican Peso"},
+  {code:"NPR",symbol:"₨",name:"Nepali Rupee"},
+  {code:"LKR",symbol:"₨",name:"Sri Lankan Rupee"},
+  {code:"BDT",symbol:"৳",name:"Bangladeshi Taka"},
+  {code:"PKR",symbol:"₨",name:"Pakistani Rupee"},
+  {code:"MMK",symbol:"K",name:"Myanmar Kyat"},
+  {code:"KHR",symbol:"៛",name:"Cambodian Riel"},
+  {code:"PHP",symbol:"₱",name:"Philippine Peso"},
+];
+function getCurr(code){ return CURRENCIES.find(c=>c.code===code)||CURRENCIES[0]; }
+function fmtC(n,code){ const c=getCurr(code); return c.symbol+Math.round(n).toLocaleString("en-IN"); }
+function cg(id){ return (COVERS.find(c=>c.id===id)||COVERS[0]).g; }
+function coverBg(trip){
+  if(trip.coverPhoto) return {backgroundImage:`url(${trip.coverPhoto})`,backgroundSize:"cover",backgroundPosition:"center"};
+  return {background:cg(trip.cover)};
+}
+function CoverDiv({trip,style={},children}){
+  if(trip.coverPhoto) return <div style={{...style,backgroundImage:`url(${trip.coverPhoto})`,backgroundSize:"cover",backgroundPosition:"center"}}>{children}</div>;
+  return <div style={{...style,background:cg(trip.cover)}}>{children}</div>;
+}
+function fd(d){ try{ return new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short"}); }catch(e){ return d; } }
+function fdd(d){ try{ return new Date(d+"T00:00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"}); }catch(e){ return d; } }
+
+function Av({name,photo,list=[],size=36,border="none"}){
+  const T=useT();
+  if(photo) return <div style={{width:size,height:size,borderRadius:"50%",overflow:"hidden",flexShrink:0,border,display:"inline-block"}}><img src={photo} alt={name} style={{width:"100%",height:"100%",objectFit:"cover"}}/></div>;
+  const c=pc(name,list);
+  return <div style={{width:size,height:size,borderRadius:"50%",background:c.bg,color:c.tx,display:"flex",alignItems:"center",justifyContent:"center",fontWeight:700,fontSize:size*0.33,flexShrink:0,border}}>{ini(name)}</div>;
+}
+
+function YBtn({children,onClick,disabled,style={}}){
+  const T=useT();
+  return <div onClick={disabled?null:onClick} style={{width:"100%",padding:"15px",background:disabled?"rgba(255,221,87,0.25)":"#FFDD57",borderRadius:12,color:disabled?"rgba(0,0,0,0.35)":"#000",fontSize:15,fontWeight:800,textAlign:"center",cursor:disabled?"not-allowed":"pointer",boxSizing:"border-box",...style}}>{children}</div>;
+}
+function GBtn({children,onClick,style={}}){
+  const T=useT();
+  return <div onClick={onClick} style={{width:"100%",padding:"13px",background:T.surface2,border:`1px solid ${T.border2}`,borderRadius:12,color:T.text,fontSize:14,fontWeight:600,textAlign:"center",cursor:"pointer",boxSizing:"border-box",...style}}>{children}</div>;
+}
+
+function Scr({children}){
+  const T=useT();
+  return <div style={{minHeight:"100vh",background:T.bg,fontFamily:T.fontBody,maxWidth:480,margin:"0 auto",overflowY:"auto",transition:"background 0.3s"}}>{children}</div>; }
+
+
+/* ── SVG Icons ── */
+function IcoHome({size=22,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 3l9 7.5V21a1 1 0 01-1 1H15v-5h-6v5H4a1 1 0 01-1-1V10.5z" fill={color}/></svg>);}
+function IcoExpenses({size=22,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke={color} strokeWidth="2"/><path d="M2 10h20" stroke={color} strokeWidth="2"/><circle cx="7" cy="15" r="1.5" fill={color}/><rect x="10" y="14" width="6" height="2" rx="1" fill={color}/></svg>);}
+function IcoItinerary({size=22,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="17" rx="2" stroke={color} strokeWidth="2"/><path d="M8 2v4M16 2v4M3 10h18" stroke={color} strokeWidth="2" strokeLinecap="round"/><circle cx="8" cy="15" r="1.5" fill={color}/><circle cx="12" cy="15" r="1.5" fill={color}/><circle cx="16" cy="15" r="1.5" fill={color}/></svg>);}
+function IcoVault({size=22,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="18" rx="2" stroke={color} strokeWidth="2"/><circle cx="12" cy="12" r="3" stroke={color} strokeWidth="2"/><path d="M12 9V7M12 17v-2M15 12h2M7 12h2" stroke={color} strokeWidth="2" strokeLinecap="round"/><circle cx="17" cy="6" r="1.5" fill={color}/></svg>);}
+function IcoNotes({size=22,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect x="3" y="2" width="18" height="20" rx="2" stroke={color} strokeWidth="2"/><path d="M7 7h10M7 11h10M7 15h6" stroke={color} strokeWidth="2" strokeLinecap="round"/></svg>);}
+function IcoLog({size=16,color="#000"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect x="3" y="2" width="18" height="20" rx="2" stroke={color} strokeWidth="2.2"/><path d="M7 7h10M7 11h10M7 15h6" stroke={color} strokeWidth="2.2" strokeLinecap="round"/></svg>);}
+function IcoSummary({size=16,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect x="3" y="12" width="4" height="9" rx="1" fill={color}/><rect x="10" y="7" width="4" height="14" rx="1" fill={color}/><rect x="17" y="3" width="4" height="18" rx="1" fill={color}/></svg>);}
+function IcoTrash({size=16,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M10 11v6M14 11v6" stroke={color} strokeWidth="2" strokeLinecap="round"/></svg>);}
+function IcoRestore({size=14,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 109-9H3" stroke={color} strokeWidth="2.2" strokeLinecap="round"/><path d="M3 7v5h5" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>);}
+
+
+/* ── Category Icons ── */
+function IcoFood({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z" stroke={color} strokeWidth="2"/><path d="M6 2v4M10 2v4M14 2v4" stroke={color} strokeWidth="2" strokeLinecap="round"/></svg>);}
+function IcoTransport({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M5 17H3a2 2 0 01-2-2V9l2-5h14l2 5v6a2 2 0 01-2 2h-2" stroke={color} strokeWidth="2" strokeLinecap="round"/><circle cx="7" cy="17" r="2" stroke={color} strokeWidth="2"/><circle cx="17" cy="17" r="2" stroke={color} strokeWidth="2"/></svg>);}
+function IcoStay({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M9 22V12h6v10" stroke={color} strokeWidth="2" strokeLinecap="round"/></svg>);}
+function IcoActivities({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>);}
+function IcoShopping({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M3 6h18M16 10a4 4 0 01-8 0" stroke={color} strokeWidth="2" strokeLinecap="round"/></svg>);}
+function IcoDrinks({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M5 3h14l-1 7H6L5 3z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M8 10c0 4 4 7 4 7s4-3 4-7" stroke={color} strokeWidth="2" strokeLinecap="round"/><path d="M7 21h10M12 17v4" stroke={color} strokeWidth="2" strokeLinecap="round"/></svg>);}
+function IcoMedical({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>);}
+function IcoOther({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="1.5" fill={color}/><circle cx="6" cy="12" r="1.5" fill={color}/><circle cx="18" cy="12" r="1.5" fill={color}/></svg>);}
+function IcoFlight({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M22 16.21v-1.61L14 9V3.5a1.5 1.5 0 00-3 0V9L3 14.6v1.61l8-2.41V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.8l8 2.01z" fill={color}/></svg>);}
+function IcoTrain({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="13" rx="3" stroke={color} strokeWidth="2"/><path d="M4 11h16" stroke={color} strokeWidth="2"/><circle cx="8.5" cy="17.5" r="1.5" stroke={color} strokeWidth="2"/><circle cx="15.5" cy="17.5" r="1.5" stroke={color} strokeWidth="2"/><path d="M9.5 19l-2 2M14.5 19l2 2" stroke={color} strokeWidth="2" strokeLinecap="round"/></svg>);}
+function IcoDrive({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M5 17H3a2 2 0 01-2-2V9l2-5h14l2 5v6a2 2 0 01-2 2h-2" stroke={color} strokeWidth="2" strokeLinecap="round"/><circle cx="7" cy="17" r="2" stroke={color} strokeWidth="2"/><circle cx="17" cy="17" r="2" stroke={color} strokeWidth="2"/></svg>);}
+function IcoHotel({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M3 22V8l9-5 9 5v14" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M9 22v-6h6v6" stroke={color} strokeWidth="2" strokeLinecap="round"/></svg>);}
+function IcoFerry({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M3 17l1.5 3h15L21 17M2 12l2-7h16l2 7H2z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 5V2" stroke={color} strokeWidth="2" strokeLinecap="round"/></svg>);}
+
+const EC_ICONS={"🍽️ Food":<IcoFood/>,"🚗 Transport":<IcoTransport/>,"🏨 Stay":<IcoStay/>,"🎉 Activities":<IcoActivities/>,"🛒 Shopping":<IcoShopping/>,"🍺 Drinks":<IcoDrinks/>,"🩺 Medical":<IcoMedical/>,"📦 Other":<IcoOther/>};
+const IC_ICONS={"✈️ Flight":<IcoFlight/>,"🚂 Train":<IcoTrain/>,"🚗 Drive":<IcoDrive/>,"🏨 Hotel":<IcoHotel/>,"🎯 Activity":<IcoActivities/>,"🍽️ Food":<IcoFood/>,"🛳️ Ferry":<IcoFerry/>,"📦 Other":<IcoOther/>};
+
+function IcoID({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke={color} strokeWidth="2"/><circle cx="8" cy="11" r="2" stroke={color} strokeWidth="2"/><path d="M14 9h4M14 13h4M6 16c0-1.1.9-2 2-2s2 .9 2 2" stroke={color} strokeWidth="2" strokeLinecap="round"/></svg>);}
+function IcoVisa({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke={color} strokeWidth="2"/><path d="M2 10h20" stroke={color} strokeWidth="2"/><path d="M6 15h4M14 15h2" stroke={color} strokeWidth="2" strokeLinecap="round"/></svg>);}
+function IcoPermit({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 2v6h6M9 13h6M9 17h4" stroke={color} strokeWidth="2" strokeLinecap="round"/></svg>);}
+function IcoCar({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M5 17H3a2 2 0 01-2-2V9l2-5h14l2 5v6a2 2 0 01-2 2h-2" stroke={color} strokeWidth="2" strokeLinecap="round"/><circle cx="7" cy="17" r="2" stroke={color} strokeWidth="2"/><circle cx="17" cy="17" r="2" stroke={color} strokeWidth="2"/></svg>);}
+
+const VC_ICONS={"🪪 ID":<IcoID/>,"✈️ Flight":<IcoFlight/>,"🚂 Train":<IcoTrain/>,"🏨 Hotel":<IcoHotel/>,"📋 Visa":<IcoVisa/>,"🔑 Permit":<IcoPermit/>,"🚗 Car Rental":<IcoCar/>,"📦 Other":<IcoOther/>};
+
+/* ── Custom Category Dropdown ── */
+function CatSelect({value,onChange,options,icons,style={}}){
+  const T=useT();
+  const [open,setOpen]=useState(false);
+  const ref=useRef(null);
+  useEffect(()=>{
+    const handler=e=>{ if(ref.current&&!ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener("mousedown",handler);
+    return()=>document.removeEventListener("mousedown",handler);
+  },[]);
+  const icon=icons[value];
+  return(
+    <div ref={ref} style={{position:"relative",...style}}>
+      <div onClick={()=>setOpen(v=>!v)} style={{display:"flex",alignItems:"center",gap:8,padding:"10px 12px",background:"rgba(255,255,255,0.07)",border:`1px solid ${open?T.accent:T.border}`,borderRadius:10,cursor:"pointer",userSelect:"none"}}>
+        {icon&&<span style={{display:"flex",alignItems:"center",color:T.accent,flexShrink:0}}>{icon}</span>}
+        <span style={{flex:1,fontSize:14,color:T.text,fontWeight:500}}>{value.replace(/^[\p{Emoji}\s]+/u,"").trim()}</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style={{transform:open?"rotate(180deg)":"none",transition:"transform 0.2s",flexShrink:0}}><path d="M6 9l6 6 6-6" stroke={T.textSub} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      </div>
+      {open&&<div style={{position:"absolute",top:"calc(100% + 4px)",left:0,right:0,background:T.surface,border:`1px solid ${T.border2}`,borderRadius:12,zIndex:500,overflowY:"auto",maxHeight:280,boxShadow:"0 8px 24px rgba(0,0,0,0.35)"}}>
+        {options.map(opt=>{
+          const ic=icons[opt];
+          const isSelected=opt===value;
+          return(
+            <div key={opt} onClick={()=>{onChange(opt);setOpen(false);}} style={{display:"flex",alignItems:"center",gap:10,padding:"11px 14px",background:isSelected?"rgba(255,221,87,0.1)":"transparent",cursor:"pointer",borderBottom:`1px solid ${T.border}`}}>
+              {ic&&<span style={{display:"flex",alignItems:"center",color:isSelected?T.accent:T.textSub,flexShrink:0}}>{ic}</span>}
+              <span style={{fontSize:14,fontWeight:isSelected?700:400,color:isSelected?T.accent:T.text}}>{opt.replace(/^[\p{Emoji}\s]+/u,"").trim()}</span>
+              {isSelected&&<svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{marginLeft:"auto"}}><path d="M20 6L9 17l-5-5" stroke={T.accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+            </div>
+          );
+        })}
+      </div>}
+    </div>
+  );
+}
+
+/* ── Splash ── */
+function Splash({onDone}){
+  const T=useT();
+  const [vis,setVis]=useState(false);
+  useEffect(()=>{ const a=setTimeout(()=>setVis(true),150); const b=setTimeout(()=>onDone(),2400); return()=>{clearTimeout(a);clearTimeout(b);}; },[]);
+  return(
+    <div style={{position:"fixed",inset:0,background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
+      <img
+        src="data:image/jpeg;base64,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FSUzYY5w0Stjr42h+DkZweYPI9i7Ztlu0mZ0Tpoeskhx1cjrhGXtxxADs5wOwZ4dmFBvwzR335tRWe6d43/v16/t/jtGfLHZSVrhk8uK0mrtTW3SlqkrbrO1hA/JQf2k7+xjG8ySfkXgNOUOt7namWPaDajW0Bc3/TaO5MinAHLrN1w3x6MH0r01DovR+kXyXp9LDDJAN41tfO6UxY7nSE7vq4qnnTYcN+XJbm7ortMT/ffp8krzl7xvWNvFj6GZJpHZ3Pc9S/6PPI6e61jM/wBW6RxfuenG6Md5wqeaguc16vlfcqn+uq53zuHcXEnHq5KT9t+1T+lsn4IsTnsscT958hBaap45EjsaOwHt4nsAiBbLg+ivii+ozRte/u7o7lTqssW2pTsgREV2iCIiAiIgIiICIiAiIgIiICIiAiIgIiIC+mPcx28xxa7vBwvlEBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQbGyXu52KsFVZ6+poqgfnwSFpPge8eBUgUe3TW9PEGSVtJUkfnzUjC76MKLkUfNpMGed8tInxh7rkvT1Z2Sx+PvWfw7b80H2p+PrWfw7b80H2qKFwuH2Xo/0q/J79Iy/mlLH4+tZ/DtvzQfan4+tZ/DtvzQfaonRPsvR/pV+UHpGX80pY/H1rP/aW35oPtT8fWs/h235oPtUTon2Xo/0q/I9Iy/mlLH4+tZ/DtvzQfah29az+Hbfmg+1ROifZej/Sr8j0jL+aUqzbd9ayRlrKihiJ/OZSNyPlyvCaj1TfNSziW+3OqrXDi1sj/Mb/AIWjzR6gtKi7YdHp8M82OkRPwh5tlvfpadxERSXMREQEREBERAREQEREBERAREQERcoOEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQFyuEQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREH/2Q=="
+        alt="TripShip"
+        style={{
+          width:"88%",
+          maxWidth:400,
+          opacity:vis?1:0,
+          transform:vis?"translateY(0)":"translateY(16px)",
+          transition:"all 0.7s cubic-bezier(.22,1,.36,1)"
+        }}
+      />
+    </div>
+  );
+}
+
+/* ── Sign In ── */
+function SignIn({onDone}){
+  const T=useT();
+  const [step,setStep]=useState("main");
+  const [phone,setPhone]=useState("");
+  const [otp,setOtp]=useState(["","","","","",""]);
+  const [fOtp]=useState(()=>String(100000+Math.floor(Math.random()*900000)));
+  const [sending,setSending]=useState(false);
+  const refs=useRef([]);
+  const inp={padding:"13px 14px",background:"rgba(255,255,255,0.07)",border:`1px solid ${T.border}`,borderRadius:12,color:T.text,fontSize:15,outline:"none",fontFamily:T.fontBody,width:"100%",boxSizing:"border-box"};
+  const sendOtp=()=>{ if(phone.length<10)return; setSending(true); setTimeout(()=>{setSending(false);setStep("otp");},1000); };
+  const onOC=(i,v)=>{ if(!/^\d*$/.test(v))return; const n=[...otp]; n[i]=v.slice(-1); setOtp(n); if(v&&i<5)refs.current[i+1]?.focus(); };
+  const onOK=(i,e)=>{ if(e.key==="Backspace"&&!otp[i]&&i>0)refs.current[i-1]?.focus(); };
+  const verify=()=>{ if(otp.join("").length<6)return; setTimeout(()=>onDone({phone}),500); };
+  if(step==="main") return(
+    <Scr><div style={{padding:"60px 24px 40px",textAlign:"center"}}>
+      <img src="data:image/jpeg;base64,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FSUzYY5w0Stjr42h+DkZweYPI9i7Ztlu0mZ0Tpoeskhx1cjrhGXtxxADs5wOwZ4dmFBvwzR335tRWe6d43/v16/t/jtGfLHZSVrhk8uK0mrtTW3SlqkrbrO1hA/JQf2k7+xjG8ySfkXgNOUOt7namWPaDajW0Bc3/TaO5MinAHLrN1w3x6MH0r01DovR+kXyXp9LDDJAN41tfO6UxY7nSE7vq4qnnTYcN+XJbm7ortMT/ffp8krzl7xvWNvFj6GZJpHZ3Pc9S/6PPI6e61jM/wBW6RxfuenG6Md5wqeaguc16vlfcqn+uq53zuHcXEnHq5KT9t+1T+lsn4IsTnsscT958hBaap45EjsaOwHt4nsAiBbLg+ivii+ozRte/u7o7lTqssW2pTsgREV2iCIiAiIgIiICIiAiIgIiICIiAiIgIiIC+mPcx28xxa7vBwvlEBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQbGyXu52KsFVZ6+poqgfnwSFpPge8eBUgUe3TW9PEGSVtJUkfnzUjC76MKLkUfNpMGed8tInxh7rkvT1Z2Sx+PvWfw7b80H2p+PrWfw7b80H2qKFwuH2Xo/0q/J79Iy/mlLH4+tZ/DtvzQfan4+tZ/DtvzQfaonRPsvR/pV+UHpGX80pY/H1rP/aW35oPtT8fWs/h235oPtUTon2Xo/0q/I9Iy/mlLH4+tZ/DtvzQfah29az+Hbfmg+1ROifZej/Sr8j0jL+aUqzbd9ayRlrKihiJ/OZSNyPlyvCaj1TfNSziW+3OqrXDi1sj/Mb/AIWjzR6gtKi7YdHp8M82OkRPwh5tlvfpadxERSXMREQEREBERAREQEREBERAREQERcoOEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQFyuEQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREH/2Q==" alt="TripShip" style={{width:"70%",maxWidth:280,margin:"0 auto 20px",display:"block"}}/>
+      <div style={{fontFamily:T.fontHead,fontSize:28,fontWeight:900,color:T.text,letterSpacing:-1}}>Welcome to<br/><span style={{color:T.accent}}>TripShip</span></div>
+      <div style={{color:T.textSub,fontSize:14,marginTop:10,marginBottom:32}}>Sign in to start splitting trips</div>
+      <div style={{display:"flex",flexDirection:"column",gap:12}}>
+        <div onClick={()=>fbAuth.signInWithRedirect(googleProvider).catch(()=>{})} style={{padding:"14px 20px",background:T.surface,border:`1px solid ${T.border2}`,borderRadius:14,color:T.text,display:"flex",alignItems:"center",justifyContent:"center",gap:12,fontSize:15,fontWeight:600,cursor:"pointer"}}>
+          <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Continue with Google
+        </div>
+        <div style={{display:"flex",alignItems:"center",gap:10}}><div style={{flex:1,height:1,background:T.border}}/><span style={{color:T.textMuted,fontSize:12}}>or</span><div style={{flex:1,height:1,background:T.border}}/></div>
+        <YBtn onClick={()=>setStep("phone")}>📱 Continue with Phone</YBtn>
+        <div style={{fontSize:12,color:T.textMuted}}>By continuing you agree to our Terms & Privacy Policy</div>
+      </div>
+    </div></Scr>
+  );
+  if(step==="phone") return(
+    <Scr><div style={{padding:"52px 24px 0"}}>
+      <button onClick={()=>setStep("main")} style={{background:"none",border:"none",color:T.textSub,cursor:"pointer",marginBottom:24,padding:0,fontSize:14}}>← Back</button>
+      <div style={{fontFamily:T.fontHead,fontSize:24,fontWeight:900,color:T.text,letterSpacing:-1,marginBottom:6}}>YOUR PHONE</div>
+      <div style={{color:T.textSub,fontSize:14,marginBottom:20}}>We'll send a 6-digit OTP</div>
+      <div style={{display:"flex",border:`1px solid ${T.border}`,borderRadius:12,overflow:"hidden",background:"rgba(255,255,255,0.05)",marginBottom:14}}>
+        <div style={{padding:"13px 14px",borderRight:`1px solid ${T.border}`,color:T.textSub,fontSize:15,whiteSpace:"nowrap"}}>🇮🇳 +91</div>
+        <input style={{flex:1,padding:"13px 14px",background:"transparent",border:"none",color:T.text,fontSize:16,outline:"none"}} type="tel" inputMode="numeric" maxLength={10} placeholder="10-digit number" value={phone} onChange={e=>setPhone(e.target.value.replace(/\D/g,"").slice(0,10))} onKeyDown={e=>e.key==="Enter"&&sendOtp()}/>
+      </div>
+      <YBtn onClick={sendOtp} disabled={phone.length<10||sending}>{sending?"Sending…":"Send OTP"}</YBtn>
+    </div></Scr>
+  );
+  return(
+    <Scr><div style={{padding:"52px 24px 0"}}>
+      <button onClick={()=>setStep("phone")} style={{background:"none",border:"none",color:T.textSub,cursor:"pointer",marginBottom:24,padding:0,fontSize:14}}>← Back</button>
+      <div style={{fontFamily:T.fontHead,fontSize:24,fontWeight:900,color:T.text,letterSpacing:-1,marginBottom:4}}>ENTER OTP</div>
+      <div style={{color:T.textSub,fontSize:14,marginBottom:4}}>Sent to +91 {phone}</div>
+      <div style={{fontSize:13,color:T.accentText,fontWeight:700,marginBottom:20}}>Demo OTP: {fOtp}</div>
+      <div style={{display:"flex",gap:8,marginBottom:18}}>
+        {otp.map((v,i)=><input key={i} ref={el=>refs.current[i]=el} type="tel" inputMode="numeric" maxLength={1} value={v} onChange={e=>onOC(i,e.target.value)} onKeyDown={e=>onOK(i,e)} style={{width:44,height:52,textAlign:"center",background:"rgba(255,255,255,0.07)",border:`1.5px solid ${v?T.accent:T.border}`,borderRadius:10,color:T.text,fontSize:20,fontWeight:700,outline:"none"}}/>)}
+      </div>
+      <YBtn onClick={verify} disabled={otp.join("").length<6}>Verify & Continue →</YBtn>
+    </div></Scr>
+  );
+}
+
+/* ── Profile Setup ── */
+function ProfileSetup({onDone}){
+  const T=useT();
+  const [name,setName]=useState(""); const [gender,setGender]=useState(""); const [city,setCity]=useState(""); const [email,setEmail]=useState("");
+  const [photo,setPhoto]=useState(null); const [raw,setRaw]=useState(null); const [preview,setPreview]=useState(false); const [perr,setPerr]=useState(""); const [imgLoaded,setImgLoaded]=useState(false);
+  const fRef=useRef(null);
+  const ok=name.trim()&&gender&&city.trim()&&photo;
+  const inp={padding:"13px 14px",background:"rgba(255,255,255,0.07)",border:`1px solid ${T.border}`,borderRadius:12,color:T.text,fontSize:15,outline:"none",fontFamily:T.fontBody,width:"100%",boxSizing:"border-box"};
+  const onFile=e=>{
+    const f=e.target.files[0]; e.target.value="";
+    if(!f)return;
+    if(f.size>3*1024*1024){setPerr("📁 File too large — use a photo under 3 MB."); return;}
+    setPerr(""); setImgLoaded(false);
+    const rd=new FileReader();
+    rd.onload=ev=>{ setRaw(ev.target.result); setPreview(true); };
+    rd.readAsDataURL(f);
+  };
+  return(
+    <Scr>
+      {preview&&raw&&(
+        <div style={{position:"fixed",inset:0,zIndex:500,background:"#000",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:28,gap:22}}>
+          <div style={{fontSize:14,color:"rgba(255,255,255,0.5)"}}>Preview — how your photo will look</div>
+          <div style={{width:200,height:200,borderRadius:"50%",border:"4px solid #FFDD57",overflow:"hidden",flexShrink:0,background:"#111",position:"relative"}}>
+            <img src={raw} alt="preview" crossOrigin="anonymous"
+              onLoad={()=>setImgLoaded(true)}
+              style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",objectPosition:"center top",display:imgLoaded?"block":"none"}}/>
+            {!imgLoaded&&<div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",color:"rgba(255,255,255,0.3)",fontSize:12}}>Loading…</div>}
+          </div>
+          <div style={{width:"100%",maxWidth:300,display:"flex",flexDirection:"column",gap:10}}>
+            <YBtn onClick={()=>{setPhoto(raw);setPreview(false);}}>✓ Set as Profile Photo</YBtn>
+            <GBtn onClick={()=>{setPreview(false);setRaw(null);setImgLoaded(false);}}>Choose different photo</GBtn>
+          </div>
+        </div>
+      )}
+      <div style={{padding:"52px 24px 100px"}}>
+        <div style={{marginBottom:28}}><div style={{fontFamily:T.fontHead,fontSize:22,fontWeight:900,color:T.text,letterSpacing:-1}}>SET UP YOUR PROFILE</div><div style={{color:T.textSub,fontSize:14,marginTop:6}}>Tell your travel crew who you are 🌍</div></div>
+        <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginBottom:28}}>
+          <div onClick={()=>fRef.current?.click()} style={{width:100,height:100,borderRadius:"50%",background:"#111",border:`2.5px solid ${photo?T.accent:perr?T.danger:T.border}`,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",overflow:"hidden",position:"relative"}}>
+            {photo?<img src={photo} alt="dp" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}}/>:<div style={{textAlign:"center"}}><div style={{fontSize:28}}>📷</div><div style={{fontSize:10,color:T.textMuted,fontWeight:600}}>UPLOAD</div></div>}
+          </div>
+          <input ref={fRef} type="file" accept="image/*" style={{display:"none"}} onChange={onFile}/>
+          {perr?<div style={{fontSize:12,color:T.danger,marginTop:8,textAlign:"center",maxWidth:220}}>{perr}</div>:<div style={{fontSize:12,color:photo?T.accentText:T.textMuted,marginTop:8,fontWeight:600}}>{photo?"✓ Photo set — tap to change":"Profile photo (required) *"}</div>}
+        </div>
+        <div style={{display:"flex",flexDirection:"column",gap:14}}>
+          <div><div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>FULL NAME *</div><input style={inp} placeholder="e.g. Rahul Sharma" value={name} onChange={e=>setName(e.target.value)}/></div>
+          <div><div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>GENDER *</div>
+            <div style={{display:"flex",gap:8}}>{["Male","Female","Non-binary","Skip"].map(g=><button key={g} onClick={()=>setGender(g)} style={{flex:1,padding:"10px 4px",background:gender===g?T.accent:"rgba(255,255,255,0.05)",border:`1px solid ${gender===g?T.accent:T.border}`,borderRadius:10,color:gender===g?"#000":T.textSub,fontSize:12,fontWeight:gender===g?700:500,cursor:"pointer"}}>{g}</button>)}</div>
+          </div>
+          <div><div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>YOUR CITY *</div><input style={inp} placeholder="e.g. Mumbai" value={city} onChange={e=>setCity(e.target.value)}/></div>
+          <div><div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>EMAIL <span style={{fontWeight:400,color:T.textMuted}}>(optional)</span></div><input style={inp} type="email" placeholder="your@email.com" value={email} onChange={e=>setEmail(e.target.value)}/></div>
+        </div>
+        <div style={{marginTop:28}}>
+          {!ok&&<div style={{fontSize:12,color:T.textMuted,textAlign:"center",marginBottom:8}}>{!photo?"📷 Profile photo is required":"Fill all required fields"}</div>}
+          <YBtn disabled={!ok} onClick={()=>onDone({name:name.trim(),gender,city:city.trim(),email:email.trim(),photo})}>Get Started</YBtn>
+        </div>
+      </div>
+    </Scr>
+  );
+}
+
+/* ── Home ── */
+function Home({user,trips,onCreate,onOpen,onUpdateUser,toggleTheme,dark}){
+  const T=useT();
+  const [join,setJoin]=useState(false); const [jUrl,setJUrl]=useState(""); const [jErr,setJErr]=useState("");
+  const [dpMenu,setDpMenu]=useState(false); const [rawDp,setRawDp]=useState(null); const [dpPrev,setDpPrev]=useState(false); const [dpErr,setDpErr]=useState(""); const [dpLoaded,setDpLoaded]=useState(false);
+  const dpRef=useRef(null);
+  const hr=new Date().getHours(); const gr=hr<12?"Good morning":hr<17?"Good afternoon":"Good evening";
+  const onDpFile=e=>{
+    const f=e.target.files[0]; e.target.value="";
+    if(!f)return;
+    if(f.size>3*1024*1024){setDpErr("📁 File too large — use a photo under 3 MB."); setDpMenu(false); return;}
+    setDpErr(""); setDpLoaded(false);
+    const rd=new FileReader();
+    rd.onload=ev=>{ setRawDp(ev.target.result); setDpMenu(false); setDpPrev(true); };
+    rd.readAsDataURL(f);
+  };
+  const [jJoining,setJJoining]=useState(false);
+  const doJoin=async()=>{
+    setJErr(""); setJJoining(true);
+    const u=jUrl.trim(); if(!u){setJJoining(false);return;}
+    let id="";
+    if(u.includes("tripId=")){const qs=u.split("?")[1]||""; const m=qs.match(/tripId=([^&]+)/); if(m)id=m[1];}
+    else if(/^[a-z0-9]{6,12}$/i.test(u)) id=u;
+    if(!id){setJErr("Invalid trip ID."); setJJoining(false); return;}
+    const local=loadTrips().find(t=>t.id===id);
+    if(local){setJJoining(false); onOpen(local); return;}
+    try{
+      const data=await fbLoadTrip(id);
+      if(!data){setJErr("No trip found."); setJJoining(false); return;}
+      if(!data.friends.includes(user.name)){
+        data.friends=[...data.friends,user.name];
+        data.memberPhotos={...data.memberPhotos,[user.name]:user.photo||null};
+        fbSaveTrip(data).catch(()=>{});
+      }
+      const all=loadTrips(); const idx=all.findIndex(x=>x.id===id);
+      if(idx>=0)all[idx]=data; else all.push(data);
+      saveTrips(all); setTrips(all);
+      setJJoining(false); onOpen(data);
+    }catch(e){ console.error(e); setJErr("Could not join. Try again."); setJJoining(false); }
+  };
+  return(
+    <Scr>
+      <input ref={dpRef} type="file" accept="image/*" style={{display:"none"}} onChange={onDpFile}/>
+      {dpPrev&&rawDp&&(
+        <div style={{position:"fixed",inset:0,zIndex:500,background:"#000",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:28,gap:22}}>
+          <div style={{fontSize:14,color:"rgba(255,255,255,0.5)"}}>Preview</div>
+          <div style={{width:200,height:200,borderRadius:"50%",border:"4px solid #FFDD57",overflow:"hidden",flexShrink:0,background:"#111",position:"relative"}}>
+            <img src={rawDp} alt="preview" crossOrigin="anonymous"
+              onLoad={()=>setDpLoaded(true)}
+              style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",objectPosition:"center top",display:dpLoaded?"block":"none"}}/>
+            {!dpLoaded&&<div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",color:"rgba(255,255,255,0.3)",fontSize:12}}>Loading…</div>}
+          </div>
+          <div style={{width:"100%",maxWidth:300,display:"flex",flexDirection:"column",gap:10}}>
+            <YBtn onClick={()=>{onUpdateUser({...user,photo:rawDp}); setDpPrev(false);}}>✓ Set as Profile Photo</YBtn>
+            <GBtn onClick={()=>{setDpPrev(false);setRawDp(null);setDpLoaded(false);}}>Choose different photo</GBtn>
+          </div>
+        </div>
+      )}
+      <div style={{padding:"0 24px 120px"}}>
+        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",paddingTop:52,marginBottom:28}}>
+          <div><div style={{fontSize:13,color:T.textSub}}>{gr} 👋</div><div style={{fontFamily:T.fontHead,fontSize:26,fontWeight:900,color:T.text,letterSpacing:-1}}>{"HI, "+user.name.split(" ")[0].toUpperCase()}</div></div>
+          <div style={{position:"relative"}}>
+            <div onClick={()=>setDpMenu(v=>!v)} style={{cursor:"pointer",position:"relative"}}>
+              <Av name={user.name} photo={user.photo} list={[user.name]} size={44} border={`2.5px solid ${T.accent}`}/>
+              <div style={{position:"absolute",bottom:0,right:0,width:16,height:16,borderRadius:"50%",background:T.accent,border:"2px solid #000",display:"flex",alignItems:"center",justifyContent:"center",fontSize:8}}>✏️</div>
+            </div>
+            {dpMenu&&<div><div onClick={()=>setDpMenu(false)} style={{position:"fixed",inset:0,zIndex:98}}/><div style={{position:"absolute",top:52,right:0,zIndex:99,background:T.surface2,border:`1px solid ${T.border2}`,borderRadius:12,overflow:"hidden",minWidth:160,boxShadow:"0 8px 24px rgba(0,0,0,0.5)"}}><button onClick={()=>{setDpMenu(false);dpRef.current?.click();}} style={{width:"100%",padding:"13px 16px",background:"none",border:"none",color:T.text,fontSize:14,fontWeight:600,cursor:"pointer",textAlign:"left"}}>📷 Change photo</button>
+                <div style={{height:1,background:T.border}}/>
+                <button onClick={()=>{setDpMenu(false);toggleTheme();}} style={{width:"100%",padding:"13px 16px",background:"none",border:"none",color:T.text,fontSize:14,fontWeight:600,cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",justifyContent:"space-between"}}><span>{dark?"☀️ Light Mode":"🌙 Dark Mode"}</span><span style={{fontSize:11,background:T.surface,border:`1px solid ${T.border}`,borderRadius:99,padding:"2px 8px",color:T.textSub}}>{dark?"ON":"OFF"}</span></button>
+                </div></div>}
+          </div>
+        </div>
+        {dpErr&&<div style={{background:"rgba(248,113,113,0.12)",border:"1px solid rgba(248,113,113,0.3)",borderRadius:10,padding:"10px 14px",fontSize:13,color:"#f87171",marginBottom:16,display:"flex",justifyContent:"space-between"}}>{dpErr}<span onClick={()=>setDpErr("")} style={{cursor:"pointer"}}>×</span></div>}
+        {!join?(
+          <div>
+            {trips.length>0&&<div style={{marginBottom:18}}>
+              <div style={{fontSize:11,fontWeight:700,color:T.textSub,letterSpacing:1,textTransform:"uppercase",marginBottom:12}}>MY TRIPS</div>
+              <div style={{display:"flex",flexDirection:"column",gap:10}}>
+                {trips.map(trip=>{ const sp=(trip.expenses||[]).reduce((s,e)=>s+e.amount,0); const dl=Math.ceil((new Date(trip.endDate+"T00:00:00")-new Date())/86400000); return(
+                  <div key={trip.id} onClick={()=>onOpen(trip)} style={{borderRadius:16,overflow:"hidden",cursor:"pointer"}}>
+                    <CoverDiv trip={trip} style={{padding:"14px 16px"}}>
+                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
+                        <div><div style={{fontFamily:T.fontHead,fontSize:17,fontWeight:900,color:"#000"}}>{trip.tripName}</div><div style={{fontSize:12,color:"rgba(0,0,0,0.6)",marginTop:2}}>📍 {trip.destination}</div></div>
+                        <span style={{fontSize:11,background:"rgba(0,0,0,0.15)",borderRadius:99,padding:"3px 8px",color:"#000",fontWeight:700}}>{dl>0?dl+"d left":"Done"}</span>
+                      </div>
+                    </CoverDiv>
+                    <div style={{background:T.surface2,padding:"10px 16px",display:"flex",alignItems:"center",gap:8,border:`1px solid ${T.border}`,borderTop:"none",borderRadius:"0 0 16px 16px"}}>
+                      <div style={{display:"flex"}}>{trip.friends.slice(0,4).map((f,fi)=><Av key={f} name={f} photo={(trip.memberPhotos||{})[f]} list={trip.friends} size={24} border="2px solid #1a1a1a"/>)}</div>
+                      <span style={{fontSize:12,color:T.textSub}}>{trip.friends.length} people</span>
+                      <div style={{flex:1}}/>
+                      {sp>0&&<span style={{fontSize:13,fontWeight:700,color:T.accentText}}>{fmt(sp)} spent</span>}
+                      <span style={{color:T.textMuted,fontSize:14}}>→</span>
+                    </div>
+                  </div>
+                );})}
+              </div>
+            </div>}
+            {trips.length===0&&<div style={{textAlign:"center",padding:"28px 0 24px"}}><div style={{display:"flex",justifyContent:"center",marginBottom:12,opacity:0.4}}><svg width="44" height="44" viewBox="0 0 24 24" fill="none"><path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3V7z" stroke={T.text} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M9 4v13M15 7v13" stroke={T.text} strokeWidth="1.5" strokeLinecap="round"/></svg></div><div style={{fontFamily:T.fontHead,fontSize:17,fontWeight:700,color:T.text}}>No trips yet</div><div style={{fontSize:14,color:T.textSub,marginTop:4}}>Create your first trip or join a friend's</div></div>}
+            <div style={{display:"flex",flexDirection:"column",gap:10}}>
+              <div onClick={onCreate} style={{width:"100%",padding:"16px 18px",background:T.accent,borderRadius:14,cursor:"pointer",display:"flex",alignItems:"center",gap:12,boxSizing:"border-box"}}>
+                <div style={{width:40,height:40,background:"rgba(0,0,0,0.15)",borderRadius:10,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3V7z" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M9 4v13M15 7v13" stroke="#000" strokeWidth="2" strokeLinecap="round"/></svg>
+                </div>
+                <div><div style={{fontFamily:T.fontHead,fontSize:14,fontWeight:900,color:"#000"}}>{trips.length>0?"+ CREATE NEW TRIP":"ADD A TRIP"}</div><div style={{fontSize:11,color:"rgba(0,0,0,0.55)",marginTop:1}}>Create a group trip & invite friends</div></div>
+                <div style={{marginLeft:"auto",color:"rgba(0,0,0,0.4)",fontSize:16}}>→</div>
+              </div>
+              <div onClick={()=>setJoin(true)} style={{width:"100%",padding:"16px 18px",background:T.surface2,border:`1px solid ${T.border2}`,borderRadius:14,cursor:"pointer",display:"flex",alignItems:"center",gap:12,boxSizing:"border-box"}}>
+                <div style={{width:40,height:40,background:T.surface,border:`1px solid ${T.border}`,borderRadius:10,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" stroke={T.text} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" stroke={T.text} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <div><div style={{fontFamily:T.fontHead,fontSize:14,fontWeight:900,color:T.text}}>JOIN A TRIP</div><div style={{fontSize:11,color:T.textSub,marginTop:1}}>Use a link shared by your friend</div></div>
+                <div style={{marginLeft:"auto",color:T.textMuted,fontSize:14}}>→</div>
+              </div>
+            </div>
+          </div>
+        ):(
+          <div>
+            <div style={{fontFamily:T.fontHead,fontSize:20,fontWeight:900,color:T.text,letterSpacing:-1,marginBottom:14}}>JOIN A TRIP</div>
+            <input style={{width:"100%",padding:"13px 14px",background:"rgba(255,255,255,0.07)",border:`1px solid ${jErr?T.danger:T.border}`,borderRadius:12,color:T.text,fontSize:15,outline:"none",fontFamily:T.fontBody,boxSizing:"border-box",marginBottom:6}} placeholder="Paste trip ID…" value={jUrl} onChange={e=>{setJUrl(e.target.value);setJErr("");}} onKeyDown={e=>e.key==="Enter"&&doJoin()} autoFocus/>
+            {jErr&&<div style={{fontSize:12,color:T.danger,marginBottom:8}}>{jErr}</div>}
+            <div style={{display:"flex",flexDirection:"column",gap:8,marginTop:8}}>
+              <YBtn onClick={doJoin} disabled={!jUrl.trim()||jJoining}>{jJoining?"Joining…":"Join Trip →"}</YBtn>
+              <GBtn onClick={()=>{setJoin(false);setJErr("");setJUrl("");}}>← Back</GBtn>
+            </div>
+          </div>
+        )}
+      </div>
+    </Scr>
+  );
+}
+
+/* ── Create Trip ── */
+function CreateTrip({user,onDone,onBack}){
+  const T=useT();
+  const [step,setStep]=useState(1);
+  const [tn,setTn]=useState(""); const [dest,setDest]=useState(""); const [sd,setSd]=useState(""); const [ed,setEd]=useState(""); const [cov,setCov]=useState(COVERS[0].id); const [coverPhoto,setCoverPhoto]=useState(null); const [coverLoaded,setCoverLoaded]=useState(false); const [curr,setCurr]=useState("INR");
+  const coverRef=useRef(null);
+  const [friends,setFriends]=useState([user.name]); const [nf,setNf]=useState(""); const [fe,setFe]=useState("");
+  const today=new Date().toISOString().split("T")[0];
+  const inp={padding:"13px 14px",background:"rgba(255,255,255,0.07)",border:`1px solid ${T.border}`,borderRadius:12,color:T.text,fontSize:15,outline:"none",fontFamily:T.fontBody,width:"100%",boxSizing:"border-box"};
+  const addF=()=>{ const n=nf.trim(); if(!n)return; if(friends.includes(n)){setFe("Already added");return;} if(friends.length>=10){setFe("Max 10");return;} setFriends(p=>[...p,n]); setNf(""); setFe(""); };
+  const create=async()=>{
+    const trip={id:genId(),tripName:tn.trim(),destination:dest.trim(),startDate:sd,endDate:ed,cover:cov,coverPhoto:coverPhoto||null,currency:curr,friends,expenses:[],itinerary:[],vault:[],notes:[],activity:[],trash:[],memberPhotos:{[user.name]:user.photo||null},createdAt:Date.now()};
+    const all=[...loadTrips(),trip]; saveTrips(all);
+    try{ await fbSaveTrip(trip); console.log("Trip saved to Firebase!"); }catch(e){ console.error("FB error:",e); }
+    onDone(trip);
+  };
+  const onCoverFile=e=>{ const f=e.target.files[0]; e.target.value=""; if(!f)return; if(f.size>5*1024*1024){return;} const rd=new FileReader(); rd.onload=ev=>{ setCoverPhoto(ev.target.result); setCoverLoaded(false); }; rd.readAsDataURL(f); };
+  if(step===1) return(
+    <Scr><div style={{padding:"0 24px 100px"}}>
+      <div style={{display:"flex",alignItems:"center",gap:12,paddingTop:52,marginBottom:22}}>
+        <button onClick={onBack} style={{background:"none",border:"none",color:T.textSub,fontSize:20,cursor:"pointer",padding:0,lineHeight:1}}>←</button>
+        <div><div style={{fontFamily:T.fontHead,fontSize:20,fontWeight:900,color:T.text,letterSpacing:-1}}>NEW TRIP</div><div style={{fontSize:13,color:T.textSub}}>Step 1 of 2</div></div>
+      </div>
+      <div style={{height:3,background:"rgba(255,255,255,0.08)",borderRadius:2,marginBottom:22}}><div style={{width:"50%",height:"100%",background:T.accent,borderRadius:2}}/></div>
+      <div style={{display:"flex",flexDirection:"column",gap:14}}>
+        <div><div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>TRIP NAME *</div><input style={inp} placeholder="e.g. Goa 2025" value={tn} onChange={e=>setTn(e.target.value)}/></div>
+        <div><div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>DESTINATION *</div><input style={inp} placeholder="e.g. Goa, Manali" value={dest} onChange={e=>setDest(e.target.value)}/></div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+          <div><div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>START *</div><input style={inp} type="date" value={sd} onChange={e=>setSd(e.target.value)} min={today}/></div>
+          <div><div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>END *</div><input style={inp} type="date" value={ed} onChange={e=>setEd(e.target.value)} min={sd||today}/></div>
+        </div>
+        <div>
+          <div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:8}}>COVER PHOTO</div>
+          <input ref={coverRef} type="file" accept="image/*" style={{display:"none"}} onChange={onCoverFile}/>
+          {coverPhoto
+            ?<div style={{position:"relative",borderRadius:14,overflow:"hidden",marginBottom:10,height:120}}>
+              <img src={coverPhoto} alt="cover" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+              <div style={{position:"absolute",inset:0,background:"rgba(0,0,0,0.35)",display:"flex",alignItems:"center",justifyContent:"center",gap:10}}>
+                <button onClick={()=>coverRef.current?.click()} style={{padding:"7px 14px",background:"rgba(255,255,255,0.9)",border:"none",borderRadius:8,fontSize:12,fontWeight:700,cursor:"pointer",color:"#000"}}>Change Photo</button>
+                <button onClick={()=>setCoverPhoto(null)} style={{padding:"7px 14px",background:"rgba(0,0,0,0.5)",border:"1px solid rgba(255,255,255,0.3)",borderRadius:8,fontSize:12,fontWeight:700,cursor:"pointer",color:"#fff"}}>Remove</button>
+              </div>
+            </div>
+            :<div onClick={()=>coverRef.current?.click()} style={{height:80,border:`2px dashed ${T.border2}`,borderRadius:14,display:"flex",alignItems:"center",justifyContent:"center",gap:8,cursor:"pointer",marginBottom:10,background:T.surface2}}>
+              <span style={{fontSize:20}}>📸</span>
+              <span style={{fontSize:13,color:T.textSub,fontWeight:600}}>Upload Cover Photo</span>
+            </div>
+          }
+          <div style={{fontSize:11,color:T.textMuted,marginBottom:8}}>Or pick a gradient:</div>
+          <div style={{display:"flex",gap:8}}>{COVERS.map(c=><div key={c.id} onClick={()=>{setCov(c.id);setCoverPhoto(null);}} style={{width:36,height:36,borderRadius:8,background:c.g,cursor:"pointer",border:`2.5px solid ${!coverPhoto&&cov===c.id?T.text:"transparent"}`}}/>)}</div>
+        </div>
+      </div>
+      <div style={{marginTop:14,marginBottom:14}}>
+        <div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>CURRENCY</div>
+        <select value={curr} onChange={e=>setCurr(e.target.value)} style={{width:"100%",padding:"12px 14px",background:T.surface2,border:`1px solid ${T.border}`,borderRadius:12,color:T.text,fontSize:14,fontWeight:600,outline:"none",fontFamily:T.fontBody,boxSizing:"border-box"}}>
+          {CURRENCIES.map(c=><option key={c.code} value={c.code}>{c.symbol} {c.code} — {c.name}</option>)}
+        </select>
+      </div>
+      <YBtn disabled={!tn.trim()||!dest.trim()||!sd||!ed} onClick={()=>setStep(2)}>Next: Add Friends →</YBtn>
+    </div></Scr>
+  );
+  return(
+    <Scr><div style={{padding:"0 24px 100px"}}>
+      <div style={{display:"flex",alignItems:"center",gap:12,paddingTop:52,marginBottom:22}}>
+        <button onClick={()=>setStep(1)} style={{background:"none",border:"none",color:T.textSub,fontSize:20,cursor:"pointer",padding:0,lineHeight:1}}>←</button>
+        <div><div style={{fontFamily:T.fontHead,fontSize:20,fontWeight:900,color:T.text,letterSpacing:-1}}>ADD FRIENDS</div><div style={{fontSize:13,color:T.textSub}}>Step 2 of 2</div></div>
+      </div>
+      <div style={{height:3,background:"rgba(255,255,255,0.08)",borderRadius:2,marginBottom:22}}><div style={{width:"100%",height:"100%",background:T.accent,borderRadius:2}}/></div>
+      <div style={{borderRadius:14,overflow:"hidden",marginBottom:18,position:"relative",minHeight:70}}>
+        {coverPhoto
+          ?<div style={{backgroundImage:`url(${coverPhoto})`,backgroundSize:"cover",backgroundPosition:"center",padding:"14px 16px",minHeight:70}}>
+            <div style={{fontFamily:T.fontHead,fontSize:17,fontWeight:900,color:"#fff",textShadow:"0 1px 4px rgba(0,0,0,0.6)"}}>{tn}</div>
+            <div style={{fontSize:12,color:"rgba(255,255,255,0.8)",marginTop:2}}>📍 {dest} · {fd(sd)} → {fd(ed)}</div>
+          </div>
+          :<div style={{background:cg(cov),padding:"14px 16px"}}>
+            <div style={{fontFamily:T.fontHead,fontSize:17,fontWeight:900,color:"#000"}}>{tn}</div>
+            <div style={{fontSize:12,color:"rgba(0,0,0,0.6)",marginTop:2}}>📍 {dest} · {fd(sd)} → {fd(ed)}</div>
+          </div>
+        }
+      </div>
+      <div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:10}}>TRAVELLERS ({friends.length}/10)</div>
+      <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:12}}>
+        {friends.map(f=>{ const c=pc(f,friends); return(
+          <div key={f} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:T.surface2,borderRadius:10,border:`1px solid ${T.border}`}}>
+            <div style={{width:32,height:32,borderRadius:"50%",background:c.bg,color:c.tx,display:"flex",alignItems:"center",justifyContent:"center",fontWeight:700,fontSize:12}}>{ini(f)}</div>
+            <div style={{flex:1,fontSize:14,fontWeight:600,color:T.text}}>{f}</div>
+            {f===user.name?<span style={{fontSize:11,color:T.accentText,fontWeight:700}}>YOU</span>:<button onClick={()=>setFriends(p=>p.filter(x=>x!==f))} style={{background:"none",border:"none",color:T.textMuted,cursor:"pointer",fontSize:18,lineHeight:1}}>×</button>}
+          </div>
+        );})}
+      </div>
+      <div style={{display:"flex",gap:8,marginBottom:4}}>
+        <input style={{flex:1,padding:"12px 14px",background:"rgba(255,255,255,0.07)",border:`1px solid ${fe?T.danger:T.border}`,borderRadius:12,color:T.text,fontSize:14,outline:"none",fontFamily:T.fontBody}} placeholder="Add friend's name" value={nf} onChange={e=>{setNf(e.target.value);setFe("");}} onKeyDown={e=>e.key==="Enter"&&addF()}/>
+        <button onClick={addF} style={{padding:"0 16px",background:T.accent,border:"none",borderRadius:12,color:"#000",fontWeight:800,fontSize:18,cursor:"pointer",lineHeight:1}}>+</button>
+      </div>
+      {fe&&<div style={{fontSize:12,color:T.danger,marginBottom:4}}>{fe}</div>}
+      <div style={{fontSize:12,color:T.textMuted,marginBottom:18}}>Friends can join later via trip ID.</div>
+      <YBtn onClick={create}>Create Trip 🎉</YBtn>
+    </div></Scr>
+  );
+}
+
+/* ── Trip Created ── */
+function TripCreated({trip,onGo}){
+  const T=useT();
+  const [cp,setCp]=useState(false);
+  return(
+    <Scr><div style={{padding:"0 24px",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",minHeight:"100vh",textAlign:"center",gap:18}}>
+      <div style={{fontSize:52}}>🎉</div>
+      <div style={{fontFamily:T.fontHead,fontSize:22,fontWeight:900,color:T.text,letterSpacing:-1}}>TRIP CREATED!</div>
+      <div style={{fontSize:14,color:T.textSub}}>Share the trip ID with your crew</div>
+      <div style={{width:"100%",borderRadius:14,overflow:"hidden"}}>
+        <CoverDiv trip={trip} style={{padding:"16px 18px"}}>
+          <div style={{fontFamily:T.fontHead,fontSize:18,fontWeight:900,color:"#000"}}>{trip.tripName}</div>
+          <div style={{fontSize:13,color:"rgba(0,0,0,0.6)",marginTop:2}}>📍 {trip.destination}</div>
+          <div style={{fontSize:12,color:"rgba(0,0,0,0.5)",marginTop:1}}>{fd(trip.startDate)} → {fd(trip.endDate)}</div>
+        </CoverDiv>
+        <div style={{background:T.surface2,padding:"10px 18px",display:"flex",alignItems:"center",gap:8,border:`1px solid ${T.border}`,borderTop:"none"}}>
+          {trip.friends.slice(0,5).map(f=><Av key={f} name={f} photo={(trip.memberPhotos||{})[f]} list={trip.friends} size={26} border="2px solid #111"/>)}
+          <span style={{fontSize:13,color:T.textSub,marginLeft:4}}>{trip.friends.length} travellers</span>
+        </div>
+      </div>
+      <div style={{width:"100%",background:T.surface2,border:`1px solid ${T.border}`,borderRadius:10,padding:"10px 14px",textAlign:"left"}}>
+        <div style={{fontSize:12,color:T.textSub,marginBottom:4}}>TRIP ID</div>
+        <div style={{fontSize:16,fontWeight:700,color:T.accent,fontFamily:"monospace"}}>{trip.id}</div>
+      </div>
+      <div style={{width:"100%",display:"flex",flexDirection:"column",gap:10}}>
+        <GBtn onClick={()=>{try{navigator.clipboard?.writeText(trip.id);}catch(e){} setCp(true); setTimeout(()=>setCp(false),2000);}} style={{background:cp?"#059669":"rgba(255,255,255,0.07)",color:cp?"#fff":"rgba(255,255,255,0.75)"}}>{cp?"✓ ID Copied!":"📋 Copy Trip ID"}</GBtn>
+        <YBtn onClick={onGo}>Let's Go →</YBtn>
+      </div>
+    </div></Scr>
+  );
+}
+
+/* ── Vault Helpers ── */
+function VaultImg({src,alt}){
+  const T=useT();
+  const [loaded,setLoaded]=useState(false);
+  return(
+    <div style={{position:"relative",width:"100%",minHeight:200,background:"#111",borderRadius:10,overflow:"hidden"}}>
+      {!loaded&&<div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",color:"rgba(255,255,255,0.3)",fontSize:13}}>Loading image…</div>}
+      <img src={src} alt={alt} onLoad={()=>setLoaded(true)} style={{width:"100%",borderRadius:10,objectFit:"contain",display:loaded?"block":"none"}}/>
+    </div>
+  );
+}
+function VaultPdf({src,name}){
+  const T=useT();
+  const openPdf=()=>{
+    try{
+      const b64=src.split(",")[1];
+      const bytes=atob(b64);
+      const arr=new Uint8Array(bytes.length);
+      for(let i=0;i<bytes.length;i++) arr[i]=bytes.charCodeAt(i);
+      const blob=new Blob([arr],{type:"application/pdf"});
+      const url=URL.createObjectURL(blob);
+      window.open(url,"_blank");
+    }catch(e){ alert("Could not open PDF."); }
+  };
+  return(
+    <div style={{width:"100%",borderRadius:14,overflow:"hidden",background:"#111",border:"1px solid rgba(255,255,255,0.1)"}}>
+      <div style={{padding:"14px 16px",background:"rgba(255,255,255,0.05)",borderBottom:"1px solid rgba(255,255,255,0.1)",display:"flex",alignItems:"center",gap:10}}>
+        <span style={{fontSize:22}}>📄</span>
+        <div style={{flex:1,minWidth:0}}>
+          <div style={{fontSize:14,color:"rgba(255,255,255,0.85)",fontWeight:700,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{name}</div>
+          <div style={{fontSize:11,color:"rgba(255,255,255,0.35)",marginTop:2}}>PDF Document</div>
+        </div>
+      </div>
+      <div style={{padding:28,display:"flex",flexDirection:"column",alignItems:"center",gap:16,textAlign:"center"}}>
+        <div style={{fontSize:48}}>📋</div>
+        <div style={{fontSize:14,color:"rgba(255,255,255,0.5)",lineHeight:1.5}}>PDF preview is not available on mobile.<br/>Tap below to open in a new tab.</div>
+        <div onClick={openPdf} style={{padding:"12px 28px",background:"#FFDD57",borderRadius:10,color:"#000",fontWeight:800,fontSize:14,cursor:"pointer"}}>Open PDF →</div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Dashboard ── */
+function simplifyDebts(bal){
+  const cr=[],db=[];
+  Object.entries(bal).forEach(([n,b])=>{ if(b>0.5)cr.push({n,a:b}); else if(b<-0.5)db.push({n,a:-b}); });
+  cr.sort((a,b)=>b.a-a.a); db.sort((a,b)=>b.a-a.a);
+  const t=[]; let i=0,j=0;
+  while(i<cr.length&&j<db.length){ const a=Math.min(cr[i].a,db[j].a); t.push({from:db[j].n,to:cr[i].n,amount:a}); cr[i].a-=a; db[j].a-=a; if(cr[i].a<0.5)i++; if(db[j].a<0.5)j++; }
+  return t;
+}
+const EC=["🍽️ Food","🚗 Transport","🏨 Stay","🎉 Activities","🛒 Shopping","🍺 Drinks","🩺 Medical","📦 Other"];
+const IC=["✈️ Flight","🚂 Train","🚗 Drive","🏨 Hotel","🎯 Activity","🍽️ Food","🛳️ Ferry","📦 Other"];
+const VC=["🪪 ID","✈️ Flight","🚂 Train","🏨 Hotel","📋 Visa","🔑 Permit","🚗 Car Rental","📦 Other"];
+const NC=["rgba(255,221,87,0.12)","rgba(99,102,241,0.12)","rgba(52,211,153,0.1)","rgba(248,113,113,0.1)","rgba(167,139,250,0.1)"];
+const NB=["rgba(255,221,87,0.3)","rgba(99,102,241,0.3)","rgba(52,211,153,0.25)","rgba(248,113,113,0.25)","rgba(167,139,250,0.25)"];
+
+function Dashboard({trip:init,user,onBack,toggleTheme,dark}){
+  const T=useT();
+  const [trip,setTrip]=useState(init);
+  const [tab,setTab]=useState("home"); const [ev,setEv]=useState("log"); const [inv,setInv]=useState(false); const [cp,setCp]=useState(false);
+  const [coverPick,setCoverPick]=useState(false); const coverPickRef=useRef(null);
+  const [tripMenu,setTripMenu]=useState(false);
+  const [confirmDel,setConfirmDel]=useState(false);
+  const [editTrip,setEditTrip]=useState(false);
+  const [etName,setEtName]=useState(init.tripName);
+  const [etDest,setEtDest]=useState(init.destination);
+  const [etSd,setEtSd]=useState(init.startDate);
+  const [etEd,setEtEd]=useState(init.endDate);
+  const [sae,setSae]=useState(false); const [py,setPy]=useState(init.friends[0]||""); const [am,setAm]=useState(""); const [ds,setDs]=useState(""); const [ec,setEc]=useState(EC[0]); const [ed2,setEd2]=useState(new Date().toISOString().split("T")[0]); const [sp,setSp]=useState(init.friends.slice()); const [eeid,setEeid]=useState(null);
+  const [receipt,setReceipt]=useState(null); const [viewReceipt,setViewReceipt]=useState(null);
+  const receiptRef=useRef(null);
+  const [dragId,setDragId]=useState(null); const [dragOver,setDragOver]=useState(null); const [reorderMode,setReorderMode]=useState(false);
+  const [sai,setSai]=useState(false); const [id2,setId2]=useState(""); const [it,setIt]=useState("09:00"); const [ii,setIi]=useState(""); const [iD,setID]=useState(""); const [ic,setIc]=useState(IC[0]); const [eid,setEid]=useState(null);
+  const [sad,setSad]=useState(false); const [dn,setDn]=useState(""); const [dc,setDc]=useState(VC[0]); const [dco,setDco]=useState(""); const [df,setDf]=useState(null); const [dfn,setDfn]=useState(""); const [edid,setEdid]=useState(null); const [vd,setVd]=useState(null);
+  const [sne,setSne]=useState(false); const [nt,setNt]=useState(""); const [nb,setNb]=useState(""); const [enid,setEnid]=useState(null);
+  const docR=useRef(null);
+
+  const upd=p=>{
+    const u={...trip,...p}; setTrip(u);
+    const all=loadTrips(); const i=all.findIndex(t=>t.id===trip.id);
+    if(i>=0)all[i]=u; else all.push(u); saveTrips(all);
+    fbSaveTrip(u).catch(()=>{});
+  };
+  const addAct=(msg,type="expense")=>{
+    const act={id:Date.now(),msg,type,by:user.name,at:Date.now()};
+    const all=loadTrips(); const i=all.findIndex(t=>t.id===trip.id);
+    if(i>=0){ all[i].activity=[act,...(all[i].activity||[])].slice(0,50); saveTrips(all); setTrip(all[i]); }
+  };
+  const deleteTrip=()=>{
+    fbDeleteTrip(trip.id).catch(()=>{});
+    const all=loadTrips().filter(t=>t.id!==trip.id);
+    saveTrips(all); onBack();
+  };
+  const saveEditTrip=()=>{
+    if(!etName.trim()||!etDest.trim()||!etSd||!etEd) return;
+    upd({tripName:etName.trim(),destination:etDest.trim(),startDate:etSd,endDate:etEd});
+    addAct(`${user.name} updated trip details`,"edit");
+    setEditTrip(false); setTripMenu(false);
+  };
+  const onCoverChange=e=>{ const f=e.target.files[0]; e.target.value=""; if(!f)return; if(f.size>5*1024*1024){return;} const rd=new FileReader(); rd.onload=ev=>{upd({coverPhoto:ev.target.result}); setCoverPick(false);}; rd.readAsDataURL(f); };
+  const exportPDF=()=>{
+    const cc2=trip.currency||"INR";
+    const sym=getCurr(cc2).symbol;
+    const fmtP=n=>sym+Math.round(n).toLocaleString("en-IN");
+    const exps2=trip.expenses||[];
+    const tot2=exps2.reduce((s,e)=>s+e.amount,0);
+    const paid2={},owed2={};
+    trip.friends.forEach(f=>{paid2[f]=0;owed2[f]=0;});
+    exps2.forEach(e=>{if(paid2[e.payer]!==undefined)paid2[e.payer]+=e.amount; e.splitAmong.forEach(f=>{if(owed2[f]!==undefined)owed2[f]+=e.amount/e.splitAmong.length;});});
+    const bal2={};trip.friends.forEach(f=>{bal2[f]=paid2[f]-owed2[f];});
+    const sets2=simplifyDebts(bal2);
+    const bDay2={};[...exps2].sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{(bDay2[e.date]=bDay2[e.date]||[]).push(e);});
+
+    // Build HTML for PDF
+    const rows=Object.keys(bDay2).sort().map((day,di)=>{
+      const es=bDay2[day];
+      const dt=es.reduce((s,e)=>s+e.amount,0);
+      const eRows=es.map(e=>`
+        <tr>
+          <td style="padding:7px 10px;border-bottom:1px solid #eee;font-size:13px;">${e.desc}</td>
+          <td style="padding:7px 10px;border-bottom:1px solid #eee;font-size:13px;color:#555;">${e.payer}</td>
+          <td style="padding:7px 10px;border-bottom:1px solid #eee;font-size:13px;color:#555;">${e.category.replace(/[^\w\s]/g,"").trim()}</td>
+          <td style="padding:7px 10px;border-bottom:1px solid #eee;font-size:13px;text-align:right;font-weight:600;">${fmtP(e.amount)}</td>
+          <td style="padding:7px 10px;border-bottom:1px solid #eee;font-size:12px;text-align:right;color:#888;">${fmtP(e.amount/e.splitAmong.length)}/p</td>
+        </tr>`).join("");
+      return `
+        <tr style="background:#f9f9f9;">
+          <td colspan="5" style="padding:8px 10px;font-weight:700;font-size:12px;letter-spacing:0.5px;">
+            DAY ${di+1} &nbsp;•&nbsp; ${fdd(day)} &nbsp;&nbsp;&nbsp; <span style="float:right;font-weight:800;">${fmtP(dt)}</span>
+          </td>
+        </tr>${eRows}`;
+    }).join("");
+
+    const settleRows=sets2.map(s=>`
+      <tr>
+        <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;font-weight:600;">${s.from}</td>
+        <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;color:#555;">pays</td>
+        <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;font-weight:600;">${s.to}</td>
+        <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;font-weight:700;color:#16a34a;text-align:right;">${fmtP(s.amount)}</td>
+      </tr>`).join("");
+
+    const perPersonRows=trip.friends.map(f=>{
+      const b=bal2[f]||0;
+      const color=b>0.5?"#16a34a":b<-0.5?"#dc2626":"#888";
+      const sign=b>0.5?"+":"";
+      return `<tr>
+        <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;font-weight:600;">${f}</td>
+        <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;color:#555;">${fmtP(paid2[f]||0)}</td>
+        <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;font-weight:700;color:${color};text-align:right;">${sign}${fmtP(b)}</td>
+      </tr>`;}).join("");
+
+    const html=`<!DOCTYPE html><html><head><meta charset="utf-8"/>
+    <style>
+      body{font-family:Arial,sans-serif;color:#111;margin:0;padding:32px;max-width:800px;margin:0 auto;}
+      h1{font-size:28px;font-weight:900;margin:0;letter-spacing:-1px;}
+      h2{font-size:14px;font-weight:700;margin:24px 0 8px;letter-spacing:1px;color:#555;text-transform:uppercase;}
+      .header{background:#FFDD57;padding:24px 28px;border-radius:12px;margin-bottom:28px;}
+      .meta{font-size:13px;color:#555;margin-top:6px;}
+      .stat{display:inline-block;margin-right:24px;}
+      .stat-val{font-size:22px;font-weight:900;color:#111;}
+      .stat-lbl{font-size:11px;color:#777;text-transform:uppercase;}
+      table{width:100%;border-collapse:collapse;margin-bottom:24px;}
+      th{background:#111;color:#fff;padding:9px 10px;font-size:11px;letter-spacing:0.5px;text-align:left;text-transform:uppercase;}
+      .footer{margin-top:40px;font-size:11px;color:#aaa;text-align:center;border-top:1px solid #eee;padding-top:16px;}
+    </style></head><body>
+    <div class="header">
+      <h1>${trip.tripName}</h1>
+      <div class="meta">📍 ${trip.destination} &nbsp;•&nbsp; ${fd(trip.startDate)} → ${fd(trip.endDate)} &nbsp;•&nbsp; ${trip.friends.length} people &nbsp;•&nbsp; ${cc2}</div>
+    </div>
+    <div style="display:flex;gap:32px;margin-bottom:28px;">
+      <div class="stat"><div class="stat-val">${fmtP(tot2)}</div><div class="stat-lbl">Total Spent</div></div>
+      <div class="stat"><div class="stat-val">${exps2.length}</div><div class="stat-lbl">Expenses</div></div>
+      <div class="stat"><div class="stat-val">${fmtP(tot2/Math.max(trip.friends.length,1))}</div><div class="stat-lbl">Per Person</div></div>
+    </div>
+    <h2>Expense Log</h2>
+    <table><thead><tr>
+      <th>Description</th><th>Paid By</th><th>Category</th><th style="text-align:right">Amount</th><th style="text-align:right">Per Person</th>
+    </tr></thead><tbody>${rows}</tbody></table>
+    <h2>Per Person Summary</h2>
+    <table><thead><tr><th>Name</th><th>Paid</th><th style="text-align:right">Balance</th></tr></thead>
+    <tbody>${perPersonRows}</tbody></table>
+    ${sets2.length>0?`<h2>Settle Up</h2><table><thead><tr><th>From</th><th></th><th>To</th><th style="text-align:right">Amount</th></tr></thead><tbody>${settleRows}</tbody></table>`:""}
+    <div class="footer">Generated by TripShip &nbsp;•&nbsp; ${new Date().toLocaleDateString("en-IN",{day:"numeric",month:"long",year:"numeric"})}</div>
+    </body></html>`;
+
+    try{
+      const win=window.open("about:blank","_blank");
+      if(win){
+        win.document.open();
+        win.document.write(html);
+        win.document.close();
+      } else {
+        // Fallback: data URI
+        const encoded=encodeURIComponent(html);
+        window.location.href="data:text/html;charset=utf-8,"+encoded;
+      }
+    } catch(e){
+      const encoded=encodeURIComponent(html);
+      window.location.href="data:text/html;charset=utf-8,"+encoded;
+    }
+  };
+  useEffect(()=>{ const now=Date.now(); const days14=14*24*60*60*1000; const tr=(trip.trash||[]); const clean=tr.filter(e=>now-e.deletedAt<days14); if(clean.length!==tr.length){const u={...trip,trash:clean};setTrip(u);const all=loadTrips();const i=all.findIndex(t=>t.id===trip.id);if(i>=0)all[i]=u;saveTrips(all);} },[]);
+  useEffect(()=>{
+    const unsub=fbListenTrip(trip.id,data=>{
+      setTrip(prev=>({...prev,...data}));
+      const all=loadTrips(); const i=all.findIndex(t=>t.id===trip.id);
+      if(i>=0){all[i]={...all[i],...data}; saveTrips(all);}
+    });
+    return()=>unsub();
+  },[trip.id]);
+  const tsp=f=>setSp(prev=>prev.includes(f)?prev.filter(x=>x!==f):[...prev,f]);
+  const saveE=()=>{
+    const a=parseFloat(am); if(!py||!a||a<=0||!ds.trim()||sp.length===0)return;
+    const exps=trip.expenses||[];
+    if(eeid){
+      upd({expenses:exps.map(e=>e.id===eeid?{...e,payer:py,amount:a,desc:ds.trim(),category:ec,date:ed2,splitAmong:sp.slice(),receipt:receipt||null}:e)});
+      addAct(`${user.name} edited expense "${ds.trim()}" — ${fmtT(a)}`,"edit");
+    } else {
+      upd({expenses:[...exps,{id:Date.now(),payer:py,amount:a,desc:ds.trim(),category:ec,date:ed2,splitAmong:sp.slice(),receipt:receipt||null}]});
+      addAct(`${user.name} added expense "${ds.trim()}" — ${fmtT(a)}`,"expense");
+    }
+    setAm(""); setDs(""); setEeid(null); setReceipt(null); setSae(false);
+  };
+  const openEditE=e=>{ setPy(e.payer); setAm(String(e.amount)); setDs(e.desc); setEc(e.category); setEd2(e.date); setSp(e.splitAmong.slice()); setEeid(e.id); setReceipt(e.receipt||null); setSae(true); };
+  const onReceiptFile=e=>{ const f=e.target.files[0]; e.target.value=""; if(!f)return; if(f.size>5*1024*1024){alert("Max 5MB");return;} const rd=new FileReader(); rd.onload=ev=>setReceipt(ev.target.result); rd.readAsDataURL(f); };
+  const delE=id=>{
+    const exps=trip.expenses||[];
+    const e=exps.find(x=>x.id===id); if(!e)return;
+    upd({
+      expenses:exps.filter(x=>x.id!==id),
+      trash:[...(trip.trash||[]),{...e,deletedAt:Date.now(),deletedBy:user.name}]
+    });
+    addAct(`${user.name} deleted expense "${e.desc}" — ${fmtT(e.amount)}`,"delete");
+  };
+  const restoreE=id=>{
+    const tr=trip.trash||[];
+    const e=tr.find(x=>x.id===id); if(!e)return;
+    const {deletedAt,deletedBy,...orig}=e;
+    upd({expenses:[...(trip.expenses||[]),orig], trash:tr.filter(x=>x.id!==id)});
+  };
+  const permDelE=id=>{ upd({trash:(trip.trash||[]).filter(x=>x.id!==id)}); };
+  const autoCleanTrash=()=>{
+    const now=Date.now(); const days14=14*24*60*60*1000;
+    const tr=(trip.trash||[]).filter(e=>now-e.deletedAt<days14);
+    if(tr.length!==(trip.trash||[]).length) upd({trash:tr});
+  };
+  const moveE=(id,dir)=>{
+    const exps=[...(trip.expenses||[])];
+    const idx=exps.findIndex(e=>e.id===id);
+    if(idx<0)return;
+    const newIdx=idx+dir;
+    if(newIdx<0||newIdx>=exps.length)return;
+    const tmp=exps[idx]; exps[idx]=exps[newIdx]; exps[newIdx]=tmp;
+    upd({expenses:exps});
+  };
+  const saveI=()=>{
+    if(!ii.trim())return;
+    const items=trip.itinerary||[];
+    if(eid){
+      upd({itinerary:items.map(x=>x.id===eid?{...x,date:id2,time:it,title:ii.trim(),desc:iD.trim(),category:ic}:x)});
+      addAct(`${user.name} edited itinerary item "${ii.trim()}"`,"itinerary");
+    } else {
+      upd({itinerary:[...items,{id:Date.now(),date:id2,time:it,title:ii.trim(),desc:iD.trim(),category:ic,addedBy:user.name}]});
+      addAct(`${user.name} added "${ii.trim()}" to itinerary`,"itinerary");
+    }
+    setSai(false);
+  };
+  const delI=id=>{ upd({itinerary:(trip.itinerary||[]).filter(x=>x.id!==id)}); };
+  const onDf=e=>{
+    const f=e.target.files[0]; e.target.value="";
+    if(!f)return;
+    if(f.size>4*1024*1024){alert("Max 4MB"); return;}
+    const rd=new FileReader();
+    rd.onload=ev=>{ setDf(ev.target.result); setDfn(f.name); if(!dn)setDn(f.name.replace(/\.[^.]+$/,"")); };
+    rd.readAsDataURL(f);
+  };
+  const saveD=()=>{
+    if(!dn.trim())return;
+    const docs=trip.vault||[];
+    if(edid){
+      upd({vault:docs.map(d=>d.id===edid?{...d,name:dn.trim(),category:dc,content:dco.trim(),file:df||d.file,fileName:dfn||d.fileName}:d)});
+      addAct(`${user.name} updated document "${dn.trim()}"`,"vault");
+    } else {
+      upd({vault:[...docs,{id:Date.now(),name:dn.trim(),category:dc,content:dco.trim(),file:df,fileName:dfn,addedBy:user.name}]});
+      addAct(`${user.name} added document "${dn.trim()}" to vault`,"vault");
+    }
+    setSad(false);
+  };
+  const delD=id=>{ upd({vault:(trip.vault||[]).filter(d=>d.id!==id)}); };
+  const saveN=()=>{
+    if(!nt.trim()&&!nb.trim())return;
+    const title=nt.trim()||nb.trim().slice(0,30);
+    const notes=trip.notes||[];
+    if(enid){
+      upd({notes:notes.map(n=>n.id===enid?{...n,title,body:nb.trim(),editedAt:Date.now()}:n)});
+      addAct(`${user.name} edited note "${title}"`,"note");
+    } else {
+      upd({notes:[{id:Date.now(),title,body:nb.trim(),createdBy:user.name,createdAt:Date.now()},...notes]});
+      addAct(`${user.name} added note "${title}"`,"note");
+    }
+    setSne(false);
+  };
+  const delN=id=>{ upd({notes:(trip.notes||[]).filter(n=>n.id!==id)}); };
+
+  const exps=trip.expenses||[]; const tot=exps.reduce((s,e)=>s+e.amount,0);
+  const bDay={}; [...exps].sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{ (bDay[e.date]=bDay[e.date]||[]).push(e); }); const days=Object.keys(bDay).sort();
+  const paid={},owed={}; trip.friends.forEach(f=>{paid[f]=0;owed[f]=0;});
+  exps.forEach(e=>{ if(paid[e.payer]!==undefined)paid[e.payer]+=e.amount; e.splitAmong.forEach(f=>{ if(owed[f]!==undefined)owed[f]+=e.amount/e.splitAmong.length; }); });
+  const bal={}; trip.friends.forEach(f=>{bal[f]=paid[f]-owed[f];});
+  const sets=simplifyDebts(bal); const mp=Math.max(...trip.friends.map(f=>paid[f]),1);
+  const amN=parseFloat(am)||0;
+  const startD=new Date(trip.startDate+"T00:00:00"); const endD=new Date(trip.endDate+"T00:00:00");
+  const tdays=[]; for(let d=new Date(startD);d<=endD;d.setDate(d.getDate()+1)){ const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0"),dd2=String(d.getDate()).padStart(2,"0"); tdays.push(y+"-"+m+"-"+dd2); }
+  const dLeft=Math.ceil((endD-new Date())/86400000);
+  const cc=trip.currency||"INR"; const fmtT=n=>fmtC(n,cc);
+  const inp={padding:"10px 12px",background:"rgba(255,255,255,0.07)",border:`1px solid ${T.border}`,borderRadius:10,color:T.text,fontSize:14,outline:"none",fontFamily:T.fontBody,width:"100%",boxSizing:"border-box"};
+  const TABS=["home","expenses","itinerary","vault","notes"];
+
+  return(
+    <div style={{fontFamily:T.fontBody,background:T.bg,minHeight:"100vh",maxWidth:480,margin:"0 auto",paddingBottom:80}}>
+      <div style={{background:T.bg,borderBottom:`1px solid ${T.border}`,padding:"12px 14px",position:"sticky",top:0,zIndex:50,display:"flex",alignItems:"center",gap:10}}>
+        <button onClick={onBack} style={{background:"none",border:"none",cursor:"pointer",fontSize:18,color:T.textSub,padding:0,lineHeight:1}}>←</button>
+
+        <div style={{flex:1,minWidth:0}}><div style={{fontFamily:T.fontHead,fontSize:15,fontWeight:900,color:T.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{trip.tripName}</div><div style={{fontSize:11,color:T.textSub}}>📍 {trip.destination} · {trip.friends.length} people</div></div>
+        <button onClick={()=>setTripMenu(v=>!v)} style={{padding:"6px 8px",background:tripMenu?T.surface2:T.surface2,border:`1px solid ${tripMenu?T.accent:T.border}`,borderRadius:8,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",width:32,height:32,position:"relative"}}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="1.5" fill={T.text}/><circle cx="12" cy="12" r="1.5" fill={T.text}/><circle cx="12" cy="19" r="1.5" fill={T.text}/></svg>
+        </button>
+        <button onClick={()=>toggleTheme()} style={{padding:"6px 8px",background:T.surface2,border:`1px solid ${T.border}`,borderRadius:8,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",width:32,height:32}}>
+          {dark
+            ?<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill={T.text}/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke={T.text} strokeWidth="2" strokeLinecap="round"/></svg>
+            :<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill={T.text}/></svg>
+          }
+        </button>
+        <button onClick={()=>setCoverPick(v=>!v)} style={{padding:"6px 8px",background:coverPick?T.accent:T.surface2,border:`1px solid ${coverPick?T.accent:T.border}`,borderRadius:8,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",width:32,height:32}}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="3" stroke={coverPick?"#000":T.text} strokeWidth="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5" fill={coverPick?"#000":T.text}/>
+            <path d="M3 15l5-5 4 4 3-3 6 6" stroke={coverPick?"#000":T.text} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+        <button onClick={()=>setInv(v=>!v)} style={{padding:"6px 10px",background:T.accent,color:"#000",border:"none",borderRadius:8,fontSize:12,fontWeight:700,cursor:"pointer"}}>🔗 Invite</button>
+      </div>
+      <input ref={coverPickRef} type="file" accept="image/*" style={{display:"none"}} onChange={onCoverChange}/>
+
+      {tripMenu&&<div>
+        <div onClick={()=>setTripMenu(false)} style={{position:"fixed",inset:0,zIndex:98}}/>
+        <div style={{position:"absolute",top:56,right:14,zIndex:99,background:T.surface,border:`1px solid ${T.border2}`,borderRadius:14,overflow:"hidden",minWidth:180,boxShadow:"0 8px 24px rgba(0,0,0,0.35)"}}>
+          <button onClick={()=>{setEtName(trip.tripName);setEtDest(trip.destination);setEtSd(trip.startDate);setEtEd(trip.endDate);setEditTrip(true);setTripMenu(false);}} style={{width:"100%",padding:"13px 16px",background:"none",border:"none",borderBottom:`1px solid ${T.border}`,color:T.text,fontSize:14,fontWeight:600,cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:T.fontBody}}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke={T.text} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke={T.text} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            Edit Trip Details
+          </button>
+          <button onClick={()=>{setTripMenu(false);setConfirmDel(true);}} style={{width:"100%",padding:"13px 16px",background:"none",border:"none",color:"#f87171",fontSize:14,fontWeight:600,cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:T.fontBody}}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" stroke="#f87171" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M10 11v5M14 11v5" stroke="#f87171" strokeWidth="2" strokeLinecap="round"/></svg>
+            Delete Trip
+          </button>
+        </div>
+      </div>}
+
+      {editTrip&&<div style={{position:"fixed",inset:0,zIndex:300,background:T.bg,display:"flex",flexDirection:"column",maxWidth:480,margin:"0 auto"}}>
+        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"13px 16px",borderBottom:`1px solid ${T.border}`,background:T.bg}}>
+          <button onClick={()=>setEditTrip(false)} style={{background:"none",border:"none",color:T.textSub,fontSize:18,cursor:"pointer",padding:0,lineHeight:1}}>←</button>
+          <div style={{fontFamily:T.fontHead,fontSize:15,fontWeight:900,color:T.text}}>EDIT TRIP</div>
+          <button onClick={saveEditTrip} disabled={!etName.trim()||!etDest.trim()||!etSd||!etEd} style={{padding:"6px 14px",background:(!etName.trim()||!etDest.trim()||!etSd||!etEd)?"rgba(255,221,87,0.3)":T.accent,border:"none",borderRadius:8,color:(!etName.trim()||!etDest.trim()||!etSd||!etEd)?"rgba(0,0,0,0.3)":"#000",fontSize:13,fontWeight:700,cursor:"pointer"}}>Save</button>
+        </div>
+        <div style={{flex:1,overflowY:"auto",padding:"20px 16px",display:"flex",flexDirection:"column",gap:14}}>
+          <div><div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>TRIP NAME *</div>
+            <input style={{width:"100%",padding:"12px 14px",background:T.surface2,border:`1px solid ${T.border}`,borderRadius:12,color:T.text,fontSize:15,outline:"none",fontFamily:T.fontBody,boxSizing:"border-box"}} value={etName} onChange={e=>setEtName(e.target.value)} placeholder="Trip name"/>
+          </div>
+          <div><div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>DESTINATION *</div>
+            <input style={{width:"100%",padding:"12px 14px",background:T.surface2,border:`1px solid ${T.border}`,borderRadius:12,color:T.text,fontSize:15,outline:"none",fontFamily:T.fontBody,boxSizing:"border-box"}} value={etDest} onChange={e=>setEtDest(e.target.value)} placeholder="Destination"/>
+          </div>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+            <div><div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>START DATE *</div>
+              <input type="date" style={{width:"100%",padding:"12px 14px",background:T.surface2,border:`1px solid ${T.border}`,borderRadius:12,color:T.text,fontSize:14,outline:"none",fontFamily:T.fontBody,boxSizing:"border-box"}} value={etSd} onChange={e=>setEtSd(e.target.value)}/>
+            </div>
+            <div><div style={{fontSize:12,fontWeight:600,color:T.textSub,marginBottom:6}}>END DATE *</div>
+              <input type="date" style={{width:"100%",padding:"12px 14px",background:T.surface2,border:`1px solid ${T.border}`,borderRadius:12,color:T.text,fontSize:14,outline:"none",fontFamily:T.fontBody,boxSizing:"border-box"}} value={etEd} onChange={e=>setEtEd(e.target.value)} min={etSd}/>
+            </div>
+          </div>
+          <div style={{marginTop:20,paddingTop:20,borderTop:`1px solid ${T.border}`}}>
+            <button onClick={()=>{setEditTrip(false);setConfirmDel(true);}} style={{width:"100%",padding:"13px",background:"rgba(248,113,113,0.1)",border:"1px solid rgba(248,113,113,0.3)",borderRadius:12,color:"#f87171",fontSize:14,fontWeight:700,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" stroke="#f87171" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              Delete This Trip
+            </button>
+          </div>
+        </div>
+      </div>}
+      {coverPick&&<div style={{background:T.surface2,borderBottom:`1px solid ${T.border}`,padding:"10px 14px"}}>
+        <div style={{fontSize:11,fontWeight:700,color:T.textSub,marginBottom:8}}>CHANGE COVER</div>
+        <div style={{display:"flex",gap:8,alignItems:"center",flexWrap:"wrap"}}>
+          <div onClick={()=>coverPickRef.current?.click()} style={{display:"flex",alignItems:"center",gap:6,padding:"7px 12px",background:T.accent,borderRadius:8,cursor:"pointer",fontSize:12,fontWeight:700,color:"#000"}}>📸 Upload Photo</div>
+          {trip.coverPhoto&&<div onClick={()=>{upd({coverPhoto:null});setCoverPick(false);}} style={{display:"flex",alignItems:"center",gap:6,padding:"7px 12px",background:"rgba(248,113,113,0.15)",border:"1px solid rgba(248,113,113,0.3)",borderRadius:8,cursor:"pointer",fontSize:12,fontWeight:700,color:T.danger}}>Remove Photo</div>}
+          <div style={{display:"flex",gap:6}}>{COVERS.map(c=><div key={c.id} onClick={()=>{upd({cover:c.id,coverPhoto:null});setCoverPick(false);}} style={{width:28,height:28,borderRadius:6,background:c.g,cursor:"pointer",border:`2px solid ${trip.cover===c.id&&!trip.coverPhoto?T.text:"transparent"}`}}/>)}</div>
+        </div>
+      </div>}
+
+      {inv&&<div style={{background:"rgba(255,221,87,0.08)",borderBottom:`1px solid rgba(255,221,87,0.2)`,padding:"10px 14px"}}>
+        <div style={{fontSize:11,fontWeight:700,color:T.accentText,marginBottom:6}}>Trip ID to share</div>
+        <div style={{display:"flex",gap:8}}>
+          <div style={{flex:1,background:T.surface2,border:`1px solid ${T.border2}`,borderRadius:7,padding:"7px 10px",fontSize:13,fontFamily:"monospace",color:T.accentText,fontWeight:700}}>{trip.id}</div>
+          <button onClick={()=>{try{navigator.clipboard?.writeText(trip.id);}catch(e){} setCp(true); setTimeout(()=>setCp(false),2000);}} style={{padding:"7px 12px",background:cp?"#059669":T.accent,color:cp?"#fff":"#000",border:"none",borderRadius:7,fontSize:12,fontWeight:700,cursor:"pointer"}}>{cp?"✓":"Copy"}</button>
+        </div>
+      </div>}
+
+      <div style={{padding:"12px 14px 0"}}>
+
+        {tab==="home"&&<div>
+          <div style={{borderRadius:14,overflow:"hidden",marginBottom:14}}>
+            <CoverDiv trip={trip} style={{padding:"16px 16px 12px"}}>
+              <div style={{display:"flex",justifyContent:"space-between"}}>
+                <div><div style={{fontFamily:T.fontHead,fontSize:19,fontWeight:900,color:"#000"}}>{trip.tripName}</div><div style={{fontSize:12,color:"rgba(0,0,0,0.6)",marginTop:2}}>📍 {trip.destination}</div></div>
+                <span style={{fontSize:11,background:"rgba(0,0,0,0.15)",borderRadius:99,padding:"3px 8px",color:"#000",fontWeight:700,alignSelf:"flex-start"}}>{dLeft>0?dLeft+"d left":"Done"}</span>
+              </div>
+            </CoverDiv>
+            <div style={{background:T.surface2,padding:"11px 16px",display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,border:`1px solid ${T.border}`,borderTop:"none"}}>
+              {[{l:"Spent",v:fmtT(tot)},{l:"Expenses",v:exps.length},{l:"People",v:trip.friends.length}].map(s=><div key={s.l} style={{textAlign:"center"}}><div style={{fontFamily:T.fontHead,fontSize:15,fontWeight:900,color:T.accentText}}>{s.v}</div><div style={{fontSize:10,color:T.textSub,marginTop:1}}>{s.l}</div></div>)}
+            </div>
+          </div>
+          <button onClick={()=>setSae(true)} style={{width:"100%",padding:"12px",background:T.accent,border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:700,cursor:"pointer",marginBottom:12}}>+ Add Expense</button>
+          {exps.length>0&&<div>
+            <div style={{fontSize:11,fontWeight:700,color:T.textSub,letterSpacing:1,marginBottom:8}}>RECENT</div>
+            <div style={{background:T.surface2,borderRadius:12,border:`1px solid ${T.border}`,overflow:"hidden"}}>
+              {[...exps].reverse().slice(0,3).map((e,i,a)=><div key={e.id} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 12px",borderBottom:i<a.length-1?`1px solid ${T.border}`:"none"}}>
+                <Av name={e.payer} photo={(trip.memberPhotos||{})[e.payer]} list={trip.friends} size={28}/>
+                <div style={{flex:1,minWidth:0}}><div style={{fontSize:13,fontWeight:600,color:T.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{e.desc}</div><div style={{fontSize:11,color:T.textSub}}>{e.payer} · {e.category}</div></div>
+                <div style={{fontSize:13,fontWeight:700,color:T.text}}>{fmtT(e.amount)}</div>
+              </div>)}
+            </div>
+            {exps.length>3&&<button onClick={()=>setTab("expenses")} style={{background:"none",border:"none",color:T.accentText,fontSize:13,fontWeight:600,cursor:"pointer",marginTop:6,padding:0}}>View all {exps.length} →</button>}
+          </div>}
+
+          {(trip.activity||[]).length>0&&<div style={{marginTop:18}}>
+            <div style={{fontSize:11,fontWeight:700,color:T.textSub,letterSpacing:1,marginBottom:10}}>RECENT ACTIVITY</div>
+            <div style={{display:"flex",flexDirection:"column",gap:2}}>
+              {(trip.activity||[]).slice(0,8).map((a,i)=>{
+                const ago=()=>{ const d=Math.floor((Date.now()-a.at)/60000); if(d<1)return"just now"; if(d<60)return d+"m ago"; if(d<1440)return Math.floor(d/60)+"h ago"; return Math.floor(d/1440)+"d ago"; };
+                const colors={expense:"rgba(255,221,87,0.15)",edit:"rgba(99,102,241,0.12)",delete:"rgba(248,113,113,0.1)",itinerary:"rgba(52,211,153,0.1)",vault:"rgba(167,139,250,0.1)",note:"rgba(251,191,36,0.1)"};
+                const dots={expense:T.accent,edit:"#818cf8",delete:"#f87171",itinerary:"#34d399",vault:"#a78bfa",note:"#fbbf24"};
+                return <div key={a.id} style={{display:"flex",alignItems:"flex-start",gap:10,padding:"9px 12px",background:colors[a.type]||"rgba(255,255,255,0.04)",borderRadius:10,border:`1px solid ${T.border}`}}>
+                  <div style={{width:8,height:8,borderRadius:"50%",background:dots[a.type]||T.accent,flexShrink:0,marginTop:4}}/>
+                  <div style={{flex:1,fontSize:13,color:T.text,lineHeight:1.4}}>{a.msg}</div>
+                  <div style={{fontSize:10,color:T.textMuted,flexShrink:0,marginTop:2}}>{ago()}</div>
+                </div>;
+              })}
+            </div>
+          </div>}
+        </div>}
+
+        {tab==="expenses"&&<div>
+          <div style={{display:"flex",background:T.surface2,borderRadius:10,padding:3,marginBottom:12,border:`1px solid ${T.border}`,gap:2}}>
+            {[["log","Log",<IcoLog size={13} color={ev==="log"?"#000":T.textSub}/>],["summary","Summary",<IcoSummary size={13} color={ev==="summary"?"#000":T.textSub}/>],["trash","Trash",<IcoTrash size={13} color={ev==="trash"?"#000":T.textSub}/>]].map(([v,label,icon])=>{
+              const tc=(trip.trash||[]).length;
+              return <button key={v} onClick={()=>setEv(v)} style={{flex:1,padding:"8px 4px",background:ev===v?v==="trash"&&tc>0?"#ff6b6b":T.accent:"transparent",border:"none",borderRadius:8,color:ev===v?"#000":T.textSub,fontSize:12,fontWeight:700,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:4,position:"relative"}}>
+                {icon}{label}{v==="trash"&&tc>0&&<span style={{background:ev==="trash"?"rgba(0,0,0,0.25)":"#ff6b6b",color:"#fff",borderRadius:99,fontSize:9,fontWeight:800,padding:"1px 5px",marginLeft:2}}>{tc}</span>}
+              </button>;
+            })}
+          </div>
+          {ev==="log"&&<div>
+            <div style={{display:"flex",gap:8,marginBottom:12}}>
+              <button onClick={()=>setSae(true)} style={{flex:1,padding:"11px",background:T.accent,border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:700,cursor:"pointer"}}>+ Add Expense</button>
+              <button onClick={()=>setReorderMode(v=>!v)} style={{padding:"11px 14px",background:reorderMode?T.accent:T.surface2,border:`1px solid ${reorderMode?T.accent:T.border2}`,borderRadius:10,color:reorderMode?"#000":T.text,fontSize:12,fontWeight:700,cursor:"pointer",whiteSpace:"nowrap"}}>
+                {reorderMode?"✓ Done":"⇅ Reorder"}
+              </button>
+            </div>
+            {reorderMode&&<div style={{fontSize:12,color:T.accent,textAlign:"center",marginBottom:10,padding:"6px",background:"rgba(255,221,87,0.08)",borderRadius:8}}>Use ↑ ↓ arrows to reorder expenses</div>}
+            {days.length===0?<div style={{textAlign:"center",padding:"28px 0",color:T.textSub}}><div style={{fontSize:32,marginBottom:8}}>🧾</div><div>No expenses yet</div></div>
+            :days.map((day,di)=>{
+              const es=bDay[day]; const dt=es.reduce((s,e)=>s+e.amount,0);
+              const allExps=trip.expenses||[];
+              return <div key={day} style={{marginBottom:16}}>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+                <div style={{display:"flex",alignItems:"center",gap:8}}><span style={{background:T.accent,color:"#000",borderRadius:6,padding:"2px 7px",fontSize:10,fontWeight:800}}>Day {di+1}</span><span style={{fontSize:12,color:T.textSub}}>{fdd(day)}</span></div>
+                <span style={{fontSize:13,fontWeight:700,color:T.text}}>{fmtT(dt)}</span>
+              </div>
+              <div style={{background:T.surface2,border:`1px solid ${reorderMode?"rgba(255,221,87,0.3)":T.border}`,borderRadius:12,transition:"border 0.2s"}}>
+                {es.map((e,i)=>{
+                  const globalIdx=allExps.findIndex(x=>x.id===e.id);
+                  return <div key={e.id} style={{display:"flex",alignItems:"center",gap:8,padding:"10px 12px",borderBottom:i<es.length-1?`1px solid ${T.border}`:"none",background:dragOver===e.id?"rgba(255,221,87,0.06)":"transparent",transition:"background 0.15s"}}>
+                    {reorderMode&&<div style={{display:"flex",flexDirection:"column",gap:2,flexShrink:0}}>
+                      <button onClick={()=>moveE(e.id,-1)} disabled={globalIdx===0} style={{background:"none",border:"none",cursor:globalIdx===0?"not-allowed":"pointer",color:globalIdx===0?"rgba(255,255,255,0.15)":"#FFDD57",fontSize:14,padding:"1px 4px",lineHeight:1}}>↑</button>
+                      <button onClick={()=>moveE(e.id,1)} disabled={globalIdx===allExps.length-1} style={{background:"none",border:"none",cursor:globalIdx===allExps.length-1?"not-allowed":"pointer",color:globalIdx===allExps.length-1?"rgba(255,255,255,0.15)":"#FFDD57",fontSize:14,padding:"1px 4px",lineHeight:1}}>↓</button>
+                    </div>}
+                    <Av name={e.payer} photo={(trip.memberPhotos||{})[e.payer]} list={trip.friends} size={28}/>
+                    <div style={{flex:1,minWidth:0}}><div style={{fontSize:13,fontWeight:600,color:T.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{e.desc} <span style={{fontSize:10,background:"rgba(255,255,255,0.08)",padding:"1px 6px",borderRadius:99,color:T.textSub}}>{e.category}</span></div><div style={{fontSize:11,color:T.textSub}}>{e.payer} · {e.splitAmong.length}p</div></div>
+                    {!reorderMode&&<div style={{textAlign:"right"}}><div style={{fontSize:13,fontWeight:700,color:T.text}}>{fmtT(e.amount)}</div><div style={{fontSize:10,color:T.textSub}}>{fmtT(e.amount/e.splitAmong.length)}/p</div></div>}
+                    {!reorderMode&&e.receipt&&<button onClick={()=>setViewReceipt(e.receipt)} style={{background:"none",border:"none",cursor:"pointer",padding:"0 2px",flexShrink:0}}><div style={{width:26,height:26,borderRadius:5,overflow:"hidden",border:`1px solid ${T.border2}`}}><img src={e.receipt} alt="r" style={{width:"100%",height:"100%",objectFit:"cover"}}/></div></button>}
+                    {!reorderMode&&<button onClick={()=>openEditE(e)} style={{background:"none",border:"none",cursor:"pointer",color:T.accentText,fontSize:11,fontWeight:700,padding:"3px 6px",borderRadius:6,border:`1px solid ${T.accentDark}`}}>Edit</button>}
+                    {!reorderMode&&<button onClick={()=>delE(e.id)} style={{background:"none",border:"none",cursor:"pointer",color:T.textMuted,fontSize:16,padding:"0 2px",lineHeight:1}}>×</button>}
+                    {reorderMode&&<div style={{textAlign:"right",minWidth:60}}><div style={{fontSize:13,fontWeight:700,color:T.text}}>{fmtT(e.amount)}</div></div>}
+                  </div>;
+                })}
+              </div>
+            </div>;})}
+            {days.length>0&&<button onClick={exportPDF} style={{width:"100%",marginTop:16,padding:"13px",background:"none",border:`1.5px solid ${T.border2}`,borderRadius:12,color:T.text,fontSize:14,fontWeight:700,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:8,fontFamily:T.fontBody}}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{flexShrink:0}}><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke={T.text} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M7 10l5 5 5-5M12 15V3" stroke={T.text} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg> Export Trip Summary
+            </button>}
+          </div>}
+          {ev==="summary"&&<div>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:14}}>
+              {[{l:"Total Spent",v:fmtT(tot)},{l:"Days",v:days.length},{l:"Fair Share",v:fmtT(tot/(trip.friends.length||1))},{l:"Expenses",v:exps.length}].map(s=><div key={s.l} style={{background:T.surface2,borderRadius:10,padding:"11px 12px",border:`1px solid ${T.border}`}}><div style={{fontSize:10,fontWeight:700,color:T.textSub}}>{s.l.toUpperCase()}</div><div style={{fontFamily:T.fontHead,fontSize:17,fontWeight:900,color:T.text,marginTop:2}}>{s.v}</div></div>)}
+            </div>
+            <div style={{fontSize:11,fontWeight:700,color:T.textSub,letterSpacing:1,marginBottom:8}}>PER PERSON</div>
+            <div style={{background:T.surface2,borderRadius:12,border:`1px solid ${T.border}`,marginBottom:14}}>
+              {trip.friends.map((f,fi)=>{ const b=bal[f]||0; const c=pc(f,trip.friends); const pt=Math.round(((paid[f]||0)/mp)*100); return <div key={f} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 12px",borderBottom:fi<trip.friends.length-1?`1px solid ${T.border}`:"none"}}>
+                <Av name={f} photo={(trip.memberPhotos||{})[f]} list={trip.friends} size={28}/>
+                <div style={{flex:1,minWidth:0}}>
+                  <div style={{display:"flex",justifyContent:"space-between",marginBottom:3}}><span style={{fontSize:13,fontWeight:700,color:T.text}}>{f}</span><span style={{fontSize:11,color:T.textSub}}>paid {fmtT(paid[f]||0)}</span></div>
+                  <div style={{height:3,background:"rgba(255,255,255,0.08)",borderRadius:2}}><div style={{height:"100%",width:`${pt}%`,background:c.tx,borderRadius:2}}/></div>
+                </div>
+                <div style={{minWidth:60,textAlign:"right",fontWeight:800,fontSize:13,color:b>0.5?"#34d399":b<-0.5?"#f87171":T.textMuted}}>{b>0.5?"+":""}{fmtT(b)}</div>
+              </div>;})}
+            </div>
+            <div style={{fontSize:11,fontWeight:700,color:T.textSub,letterSpacing:1,marginBottom:8}}>SETTLE UP</div>
+            {sets.length===0?<div style={{fontSize:13,color:T.textSub}}>All settled! ✓</div>
+            :sets.map((s,i)=><div key={i} style={{display:"flex",alignItems:"center",gap:8,background:T.surface2,border:`1px solid ${T.border}`,borderRadius:10,padding:"10px 12px",marginBottom:6}}>
+              <Av name={s.from} photo={(trip.memberPhotos||{})[s.from]} list={trip.friends} size={24}/><span style={{fontSize:13,fontWeight:700,color:T.text}}>{s.from}</span>
+              <span style={{fontSize:11,color:T.textSub}}>→ pays →</span>
+              <Av name={s.to} photo={(trip.memberPhotos||{})[s.to]} list={trip.friends} size={24}/><span style={{fontSize:13,fontWeight:700,color:T.text}}>{s.to}</span>
+              <span style={{marginLeft:"auto",fontWeight:800,color:"#34d399",fontSize:13}}>{fmtT(s.amount)}</span>
+            </div>)}
+          </div>}
+        </div>}
+
+
+          {ev==="trash"&&<div>
+            {(trip.trash||[]).length===0
+              ?<div style={{textAlign:"center",padding:"36px 0",color:T.textSub}}>
+                <div style={{fontSize:40,marginBottom:10,opacity:0.3}}>🗑️</div>
+                <div style={{fontSize:14,fontWeight:600}}>Trash is empty</div>
+                <div style={{fontSize:12,marginTop:4,color:T.textMuted}}>Deleted expenses appear here for 14 days</div>
+              </div>
+              :<div>
+                <div style={{fontSize:12,color:"rgba(248,113,113,0.8)",textAlign:"center",marginBottom:12,padding:"8px 12px",background:"rgba(248,113,113,0.08)",borderRadius:8,border:"1px solid rgba(248,113,113,0.2)"}}>
+                  Expenses are permanently deleted after 14 days
+                </div>
+                <div style={{display:"flex",flexDirection:"column",gap:8}}>
+                  {[...(trip.trash||[])].sort((a,b)=>b.deletedAt-a.deletedAt).map(e=>{
+                    const daysLeft=Math.ceil((14*24*60*60*1000-(Date.now()-e.deletedAt))/(24*60*60*1000));
+                    const urgent=daysLeft<=3;
+                    return <div key={e.id} style={{background:T.surface2,border:`1px solid ${urgent?"rgba(248,113,113,0.35)":T.border}`,borderRadius:12,padding:"12px 14px"}}>
+                      <div style={{display:"flex",alignItems:"flex-start",gap:10}}>
+                        <Av name={e.payer} photo={(trip.memberPhotos||{})[e.payer]} list={trip.friends} size={30}/>
+                        <div style={{flex:1,minWidth:0}}>
+                          <div style={{fontSize:13,fontWeight:700,color:"rgba(255,255,255,0.45)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",textDecoration:"line-through"}}>{e.desc}</div>
+                          <div style={{fontSize:11,color:T.textMuted,marginTop:2}}>{e.payer} paid · {e.category} · {fdd(e.date)}</div>
+                          <div style={{display:"flex",alignItems:"center",gap:6,marginTop:5}}>
+                            <span style={{fontSize:10,color:"rgba(255,255,255,0.3)"}}>Deleted by</span>
+                            <span style={{fontSize:11,fontWeight:700,color:urgent?"#f87171":"rgba(255,255,255,0.5)"}}>{e.deletedBy}</span>
+                            <span style={{fontSize:10,color:urgent?"#f87171":"rgba(255,255,255,0.25)",fontWeight:urgent?700:400}}>· {daysLeft}d left</span>
+                          </div>
+                        </div>
+                        <div style={{textAlign:"right",flexShrink:0}}>
+                          <div style={{fontSize:13,fontWeight:700,color:"rgba(255,255,255,0.35)",textDecoration:"line-through"}}>{fmtT(e.amount)}</div>
+                          <div style={{display:"flex",gap:5,marginTop:8,justifyContent:"flex-end"}}>
+                            <button onClick={()=>restoreE(e.id)} style={{display:"flex",alignItems:"center",gap:4,padding:"5px 10px",background:"rgba(52,211,153,0.12)",border:"1px solid rgba(52,211,153,0.25)",borderRadius:7,color:"#34d399",fontSize:11,fontWeight:700,cursor:"pointer"}}>
+                              <IcoRestore size={11} color="#34d399"/> Restore
+                            </button>
+                            <button onClick={()=>permDelE(e.id)} style={{padding:"5px 8px",background:"rgba(248,113,113,0.1)",border:"1px solid rgba(248,113,113,0.25)",borderRadius:7,color:"#f87171",fontSize:13,fontWeight:700,cursor:"pointer",lineHeight:1}}>✕</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>;
+                  })}
+                </div>
+              </div>
+            }
+          </div>}
+
+        {tab==="itinerary"&&<div>
+          {tdays.map((day,di)=>{ const its=(trip.itinerary||[]).filter(x=>x.date===day).sort((a,b)=>a.time.localeCompare(b.time)); return <div key={day} style={{marginBottom:16}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+              <div style={{display:"flex",alignItems:"center",gap:8}}><span style={{background:T.accent,color:"#000",borderRadius:6,padding:"2px 7px",fontSize:10,fontWeight:800}}>Day {di+1}</span><span style={{fontSize:12,color:T.textSub}}>{fdd(day)}</span></div>
+              <button onClick={()=>{setId2(day);setIt("09:00");setIi("");setID("");setIc(IC[0]);setEid(null);setSai(true);}} style={{background:T.isDark?"rgba(255,221,87,0.1)":"rgba(154,117,0,0.1)",border:`1px solid ${T.accentDark}`,borderRadius:8,color:T.accentText,fontSize:12,fontWeight:700,cursor:"pointer",padding:"3px 10px"}}>+ Add</button>
+            </div>
+            {its.length===0?<div style={{padding:"11px 14px",background:T.surface2,borderRadius:10,border:`1px dashed ${T.border}`,fontSize:12,color:T.textMuted,textAlign:"center"}}>Nothing planned</div>
+            :<div style={{background:T.surface2,border:`1px solid ${T.border}`,borderRadius:12}}>
+              {its.map((iv,i)=><div key={iv.id} style={{display:"flex",gap:10,padding:"10px 12px",borderBottom:i<its.length-1?`1px solid ${T.border}`:"none"}}>
+                <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:2,flexShrink:0,width:34}}><div style={{fontSize:16}}>{iv.category.split(" ")[0]}</div><div style={{fontSize:9,color:T.textMuted,fontWeight:600}}>{iv.time}</div></div>
+                <div style={{flex:1,minWidth:0}}><div style={{fontSize:13,fontWeight:700,color:T.text}}>{iv.title}</div>{iv.desc&&<div style={{fontSize:11,color:T.textSub,marginTop:1}}>{iv.desc}</div>}<div style={{fontSize:10,color:T.textMuted,marginTop:2}}>by {iv.addedBy}</div></div>
+                <div style={{display:"flex",gap:6}}><button onClick={()=>{setId2(iv.date);setIt(iv.time);setIi(iv.title);setID(iv.desc||"");setIc(iv.category);setEid(iv.id);setSai(true);}} style={{background:"none",border:"none",cursor:"pointer",color:T.textSub,fontSize:13,lineHeight:1}}>✏️</button><button onClick={()=>delI(iv.id)} style={{background:"none",border:"none",cursor:"pointer",color:T.textMuted,fontSize:15,lineHeight:1}}>×</button></div>
+              </div>)}
+            </div>}
+          </div>;})}
+        </div>}
+
+        {tab==="vault"&&<div>
+          <input ref={docR} type="file" accept="image/*,.pdf" style={{display:"none"}} onChange={onDf}/>
+          <button onClick={()=>{setDn("");setDc(VC[0]);setDco("");setDf(null);setDfn("");setEdid(null);setSad(true);}} style={{width:"100%",padding:"11px",background:T.accent,border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:700,cursor:"pointer",marginBottom:12}}>+ Add Document</button>
+          {(trip.vault||[]).length===0?<div style={{textAlign:"center",padding:"28px 0",color:T.textSub}}><div style={{display:"flex",justifyContent:"center",marginBottom:12,opacity:0.3}}><IcoVault size={40} color={T.text}/></div><div>No documents yet</div></div>
+          :(trip.vault||[]).map(d=><div key={d.id} style={{background:T.surface2,border:`1px solid ${T.border}`,borderRadius:12,padding:"11px 12px",marginBottom:8}}>
+            <div style={{display:"flex",alignItems:"center",gap:10}}>
+              <div style={{fontSize:22,flexShrink:0}}>{d.category.split(" ")[0]}</div>
+              <div style={{flex:1,minWidth:0}}><div style={{fontSize:14,fontWeight:700,color:T.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{d.name}</div><div style={{fontSize:11,color:T.textSub}}>{d.category.split(" ").slice(1).join(" ")} · by {d.addedBy}</div>{d.fileName&&<div style={{fontSize:11,color:T.accentText,marginTop:1}}>📎 {d.fileName}</div>}</div>
+              <div style={{display:"flex",gap:6}}>
+                <button onClick={()=>setVd(d)} style={{background:T.isDark?"rgba(255,221,87,0.1)":"rgba(154,117,0,0.1)",border:`1px solid ${T.accentDark}`,borderRadius:7,color:T.accentText,fontSize:11,fontWeight:600,cursor:"pointer",padding:"3px 8px"}}>View</button>
+                <button onClick={()=>{setDn(d.name);setDc(d.category);setDco(d.content||"");setDf(null);setDfn(d.fileName||"");setEdid(d.id);setSad(true);}} style={{background:"none",border:"none",cursor:"pointer",color:T.textSub,fontSize:13,lineHeight:1}}>✏️</button>
+                <button onClick={()=>delD(d.id)} style={{background:"none",border:"none",cursor:"pointer",color:T.textMuted,fontSize:15,lineHeight:1}}>×</button>
+              </div>
+            </div>
+            {d.content&&<div style={{fontSize:12,color:T.textSub,marginTop:8,padding:"7px 10px",background:"rgba(255,255,255,0.04)",borderRadius:8,wordBreak:"break-all"}}>{d.content.slice(0,100)}{d.content.length>100?"…":""}</div>}
+          </div>)}
+        </div>}
+
+        {tab==="notes"&&<div>
+          {!sne?<div>
+            <button onClick={()=>{setNt("");setNb("");setEnid(null);setSne(true);}} style={{width:"100%",padding:"11px",background:T.accent,border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:700,cursor:"pointer",marginBottom:12}}>+ New Note</button>
+            {(trip.notes||[]).length===0?<div style={{textAlign:"center",padding:"28px 0",color:T.textSub}}><div style={{display:"flex",justifyContent:"center",marginBottom:12,opacity:0.3}}><IcoNotes size={40} color={T.text}/></div><div>No notes yet</div></div>
+            :<div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+              {(trip.notes||[]).map((n,ni)=><div key={n.id} onClick={()=>{setNt(n.title);setNb(n.body);setEnid(n.id);setSne(true);}} style={{background:NC[ni%NC.length],border:`1px solid ${NB[ni%NB.length]}`,borderRadius:12,padding:"12px",cursor:"pointer",minHeight:100,position:"relative"}}>
+                <div style={{fontSize:14,fontWeight:700,color:T.text,marginBottom:4,lineHeight:1.3}}>{n.title}</div>
+                {n.body&&<div style={{fontSize:12,color:T.textSub,lineHeight:1.4,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:3,WebkitBoxOrient:"vertical"}}>{n.body}</div>}
+                <div style={{fontSize:10,color:T.textMuted,marginTop:8}}>by {n.createdBy}</div>
+                <button onClick={e=>{e.stopPropagation();delN(n.id);}} style={{position:"absolute",top:6,right:6,background:"none",border:"none",cursor:"pointer",color:T.textMuted,fontSize:14,lineHeight:1}}>×</button>
+              </div>)}
+            </div>}
+          </div>:(
+            <div style={{position:"fixed",inset:0,zIndex:200,background:T.bg,display:"flex",flexDirection:"column",maxWidth:480,margin:"0 auto",transition:"background 0.3s"}}>
+              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"13px 18px",borderBottom:`1px solid ${T.border}`}}>
+                <button onClick={()=>setSne(false)} style={{background:"none",border:"none",color:T.textSub,fontSize:14,cursor:"pointer",fontWeight:600}}>Cancel</button>
+                <button onClick={saveN} disabled={!nt.trim()&&!nb.trim()} style={{background:(!nt.trim()&&!nb.trim())?"transparent":T.accent,border:"none",borderRadius:8,color:(!nt.trim()&&!nb.trim())?T.textMuted:"#000",fontSize:14,fontWeight:700,cursor:"pointer",padding:"6px 14px"}}>Done</button>
+              </div>
+              <div style={{flex:1,padding:"18px",display:"flex",flexDirection:"column",gap:10,overflow:"auto"}}>
+                <input style={{background:"none",border:"none",outline:"none",color:T.text,fontSize:20,fontWeight:700,fontFamily:T.fontHead}} placeholder="Title" value={nt} onChange={e=>setNt(e.target.value)} autoFocus/>
+                <textarea style={{background:"none",border:"none",outline:"none",color:T.textSub,fontSize:14,resize:"none",flex:1,lineHeight:1.6,fontFamily:T.fontBody,minHeight:"50vh"}} placeholder="Start typing…" value={nb} onChange={e=>setNb(e.target.value)}/>
+              </div>
+            </div>
+          )}
+        </div>}
+      </div>
+
+      <div style={{position:"fixed",bottom:0,left:0,right:0,background:T.bg,borderTop:`1px solid ${T.border}`,display:"flex",justifyContent:"space-around",padding:"7px 0 10px",zIndex:100,maxWidth:480,margin:"0 auto"}}>
+        {TABS.map(id=>{
+          const active=tab===id;
+          const col=active?(T.isDark?T.accent:T.accentDark):T.textSub;
+          const labels={home:"Home",expenses:"Expenses",itinerary:"Itinerary",vault:"Vault",notes:"Notes"};
+          const icons={
+            home:<IcoHome size={22} color={col}/>,
+            expenses:<IcoExpenses size={22} color={col}/>,
+            itinerary:<IcoItinerary size={22} color={col}/>,
+            vault:<IcoVault size={22} color={col}/>,
+            notes:<IcoNotes size={22} color={col}/>
+          };
+          return(<button key={id} onClick={()=>setTab(id)} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:3,background:"none",border:"none",cursor:"pointer",padding:"3px 8px",fontFamily:T.fontBody}}>
+            {icons[id]}
+            <span style={{fontSize:9,fontWeight:active?700:400,color:col,letterSpacing:0.3}}>{labels[id]}</span>
+          </button>);
+        })}
+      </div>
+      {sae&&<div style={{position:"fixed",inset:0,zIndex:200}}>
+        <div onClick={()=>{setSae(false);setEeid(null);setAm("");setDs("");setReceipt(null);}} style={{position:"absolute",inset:0,background:"rgba(0,0,0,0.75)"}}/>
+        <div style={{position:"absolute",bottom:0,left:0,right:0,maxWidth:480,margin:"0 auto",background:T.surface,borderRadius:"18px 18px 0 0",padding:"16px 16px 32px"}}>
+          <div style={{width:32,height:4,background:T.border2,borderRadius:2,margin:"0 auto 14px"}}/>
+          <div style={{fontFamily:T.fontHead,fontSize:15,fontWeight:900,color:T.text,marginBottom:12}}>{eeid?"EDIT EXPENSE":"ADD EXPENSE"}</div>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:8}}>
+            <div><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>WHO PAID?</div><select style={{...inp,fontSize:13}} value={py} onChange={e=>setPy(e.target.value)}>{trip.friends.map(f=><option key={f}>{f}</option>)}</select></div>
+            <div><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>AMOUNT (₹)</div><input style={{...inp,fontSize:13}} type="number" min="0" value={am} onChange={e=>setAm(e.target.value)} placeholder="0"/></div>
+          </div>
+          <div style={{marginBottom:8}}><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>DESCRIPTION</div><input style={inp} placeholder="Beach lunch…" value={ds} onChange={e=>setDs(e.target.value)}/></div>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:10}}>
+            <div><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>CATEGORY</div><CatSelect value={ec} onChange={setEc} options={EC} icons={EC_ICONS}/></div>
+            <div><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>DATE</div><input style={{...inp,fontSize:13}} type="date" value={ed2} onChange={e=>setEd2(e.target.value)}/></div>
+          </div>
+          <div style={{marginBottom:12}}>
+            <div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:6}}>SPLIT AMONG {sp.length>0&&amN>0&&<span style={{color:T.accentText}}>· {getCurr(cc).symbol}{Math.round(amN/sp.length).toLocaleString("en-IN")} each</span>}</div>
+            <div style={{display:"flex",flexWrap:"wrap",gap:6}}>{trip.friends.map(f=>{ const on=sp.includes(f); const c=pc(f,trip.friends); return <div key={f} onClick={()=>tsp(f)} style={{display:"inline-flex",alignItems:"center",gap:4,padding:"5px 10px",borderRadius:99,fontSize:12,cursor:"pointer",fontWeight:on?700:500,background:on?c.bg:"rgba(255,255,255,0.05)",color:on?c.tx:T.textSub,border:`1.5px solid ${on?c.bg:T.border}`}}>{on&&"✓ "}{f}</div>; })}</div>
+          </div>
+          <input ref={receiptRef} type="file" accept="image/*" style={{display:"none"}} onChange={onReceiptFile}/>
+          <div style={{marginBottom:12}}>
+            <div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:6}}>RECEIPT PHOTO <span style={{fontWeight:400,color:T.textMuted}}>(optional)</span></div>
+            {receipt
+              ?<div style={{position:"relative",borderRadius:10,overflow:"hidden",height:90}}>
+                <img src={receipt} alt="receipt" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+                <div style={{position:"absolute",inset:0,background:"rgba(0,0,0,0.4)",display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
+                  <button onClick={()=>receiptRef.current?.click()} style={{padding:"5px 10px",background:"rgba(255,255,255,0.9)",border:"none",borderRadius:7,fontSize:11,fontWeight:700,cursor:"pointer",color:"#000"}}>Change</button>
+                  <button onClick={()=>setReceipt(null)} style={{padding:"5px 10px",background:"rgba(0,0,0,0.5)",border:"1px solid rgba(255,255,255,0.3)",borderRadius:7,fontSize:11,fontWeight:700,cursor:"pointer",color:"#fff"}}>Remove</button>
+                </div>
+              </div>
+              :<div onClick={()=>receiptRef.current?.click()} style={{height:52,border:`1.5px dashed ${T.border2}`,borderRadius:10,display:"flex",alignItems:"center",justifyContent:"center",gap:8,cursor:"pointer",background:T.surface2}}>
+                <span style={{fontSize:16}}>🧾</span>
+                <span style={{fontSize:12,color:T.textSub,fontWeight:600}}>Attach Receipt</span>
+              </div>
+            }
+          </div>
+          <YBtn onClick={saveE} disabled={!py||!am||!ds.trim()||sp.length===0}>{eeid?"Save Changes":"Add Expense"}</YBtn>
+        </div>
+      </div>}
+      {sai&&<div style={{position:"fixed",inset:0,zIndex:200}}>
+        <div onClick={()=>setSai(false)} style={{position:"absolute",inset:0,background:"rgba(0,0,0,0.75)"}}/>
+        <div style={{position:"absolute",bottom:0,left:0,right:0,maxWidth:480,margin:"0 auto",background:T.surface,borderRadius:"18px 18px 0 0",padding:"16px 16px 32px"}}>
+          <div style={{width:32,height:4,background:T.border2,borderRadius:2,margin:"0 auto 12px"}}/>
+          <div style={{fontFamily:T.fontHead,fontSize:15,fontWeight:900,color:T.text,marginBottom:12}}>{eid?"EDIT ITEM":"ADD TO DAY"}</div>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:8}}>
+            <div><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>TIME</div><input style={{...inp,fontSize:13}} type="time" value={it} onChange={e=>setIt(e.target.value)}/></div>
+            <div><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>CATEGORY</div><CatSelect value={ic} onChange={setIc} options={IC} icons={IC_ICONS}/></div>
+          </div>
+          <div style={{marginBottom:8}}><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>TITLE *</div><input style={inp} placeholder="e.g. Fly to Goa" value={ii} onChange={e=>setIi(e.target.value)}/></div>
+          <div style={{marginBottom:12}}><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>NOTES</div><textarea style={{...inp,resize:"none",height:60}} placeholder="Flight no, address…" value={iD} onChange={e=>setID(e.target.value)}/></div>
+          <YBtn onClick={saveI} disabled={!ii.trim()}>{eid?"Save Changes":"Add to Itinerary"}</YBtn>
+        </div>
+      </div>}
+      {sad&&<div style={{position:"fixed",inset:0,zIndex:200}}>
+        <div onClick={()=>setSad(false)} style={{position:"absolute",inset:0,background:"rgba(0,0,0,0.75)"}}/>
+        <div style={{position:"absolute",bottom:0,left:0,right:0,maxWidth:480,margin:"0 auto",background:T.surface,borderRadius:"18px 18px 0 0",padding:"16px 16px 32px",maxHeight:"88vh",overflowY:"auto"}}>
+          <div style={{width:32,height:4,background:T.border2,borderRadius:2,margin:"0 auto 12px"}}/>
+          <div style={{fontFamily:T.fontHead,fontSize:15,fontWeight:900,color:T.text,marginBottom:12}}>{edid?"EDIT DOCUMENT":"ADD DOCUMENT"}</div>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:8}}>
+            <div><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>NAME *</div><input style={{...inp,fontSize:13}} placeholder="e.g. Aadhar" value={dn} onChange={e=>setDn(e.target.value)}/></div>
+            <div><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>CATEGORY</div><CatSelect value={dc} onChange={setDc} options={VC} icons={VC_ICONS}/></div>
+          </div>
+          <div style={{marginBottom:8}}><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>NOTES / DETAILS</div><textarea style={{...inp,resize:"none",height:68}} placeholder="PNR, booking ID…" value={dco} onChange={e=>setDco(e.target.value)}/></div>
+          <div style={{marginBottom:12}}>
+            <div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:6}}>ATTACH FILE (max 4MB)</div>
+            {dfn&&<div style={{fontSize:12,color:T.accent,marginBottom:6}}>📎 {dfn}</div>}
+            <label style={{display:"block",padding:"11px",background:"rgba(255,255,255,0.04)",border:`1.5px dashed ${T.border2}`,borderRadius:10,textAlign:"center",cursor:"pointer",color:T.textSub,fontSize:13}}>
+              {dfn?"Replace file":"📁 Tap to upload"}
+              <input type="file" accept="image/*,.pdf" style={{display:"none"}} onChange={onDf}/>
+            </label>
+          </div>
+          <YBtn onClick={saveD} disabled={!dn.trim()}>{edid?"Save Changes":"Add to Vault"}</YBtn>
+        </div>
+      </div>}
+      {confirmDel&&<div style={{position:"fixed",inset:0,zIndex:500,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:24}}>
+        <div style={{background:T.surface,borderRadius:18,padding:"24px 20px",width:"100%",maxWidth:320,boxShadow:"0 20px 60px rgba(0,0,0,0.5)"}}>
+          <div style={{width:52,height:52,borderRadius:14,background:"rgba(248,113,113,0.15)",border:"1px solid rgba(248,113,113,0.3)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 16px"}}>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" stroke="#f87171" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M10 11v5M14 11v5" stroke="#f87171" strokeWidth="2" strokeLinecap="round"/></svg>
+          </div>
+          <div style={{fontFamily:T.fontHead,fontSize:18,fontWeight:900,color:T.text,textAlign:"center",marginBottom:8}}>Delete Trip?</div>
+          <div style={{fontSize:13,color:T.textSub,textAlign:"center",lineHeight:1.5,marginBottom:24}}>All expenses, itinerary, vault documents and notes will be permanently deleted.</div>
+          <div style={{display:"flex",flexDirection:"column",gap:10}}>
+            <button onClick={deleteTrip} style={{width:"100%",padding:"13px",background:"#ef4444",border:"none",borderRadius:12,color:"#fff",fontSize:15,fontWeight:700,cursor:"pointer"}}>Yes, Delete Trip</button>
+            <button onClick={()=>setConfirmDel(false)} style={{width:"100%",padding:"13px",background:T.surface2,border:`1px solid ${T.border}`,borderRadius:12,color:T.text,fontSize:15,fontWeight:600,cursor:"pointer"}}>Cancel</button>
+          </div>
+        </div>
+      </div>}
+      {viewReceipt&&<div style={{position:"fixed",inset:0,zIndex:400,background:"rgba(0,0,0,0.97)",display:"flex",flexDirection:"column",maxWidth:480,margin:"0 auto"}}>
+        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"13px 16px",borderBottom:`1px solid ${T.border}`}}>
+          <button onClick={()=>setViewReceipt(null)} style={{background:"none",border:"none",color:T.textSub,fontSize:18,cursor:"pointer",padding:0,lineHeight:1}}>←</button>
+          <div style={{fontSize:14,fontWeight:700,color:T.text}}>Receipt</div>
+          <div style={{width:28}}/>
+        </div>
+        <div style={{flex:1,overflow:"auto",padding:16,display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <img src={viewReceipt} alt="receipt" style={{maxWidth:"100%",maxHeight:"80vh",borderRadius:12,objectFit:"contain"}}/>
+        </div>
+      </div>}
+      {vd&&<div style={{position:"fixed",inset:0,zIndex:300,background:"rgba(0,0,0,0.96)",display:"flex",flexDirection:"column",maxWidth:480,margin:"0 auto"}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,padding:"13px 16px",borderBottom:`1px solid ${T.border}`}}>
+          <button onClick={()=>setVd(null)} style={{background:"none",border:"none",color:T.textSub,fontSize:18,cursor:"pointer",padding:0,lineHeight:1}}>←</button>
+          <div style={{flex:1}}><div style={{fontSize:14,fontWeight:700,color:T.text}}>{vd.name}</div><div style={{fontSize:11,color:T.textSub}}>{vd.category} · by {vd.addedBy}</div></div>
+        </div>
+        <div style={{flex:1,overflow:"auto",padding:16}}>
+          {vd.content&&<div style={{background:T.surface2,borderRadius:10,padding:"11px 13px",marginBottom:12,border:`1px solid ${T.border}`}}><div style={{fontSize:11,fontWeight:600,color:T.textSub,marginBottom:4}}>NOTES</div><div style={{fontSize:14,color:T.text,lineHeight:1.6,wordBreak:"break-all"}}>{vd.content}</div></div>}
+          {vd.file&&(vd.fileName&&vd.fileName.toLowerCase().endsWith(".pdf")
+            ?<VaultPdf src={vd.file} name={vd.name}/>
+            :<VaultImg src={vd.file} alt={vd.name}/>
+          )}
+          {!vd.file&&!vd.content&&<div style={{textAlign:"center",color:T.textSub,fontSize:14,marginTop:40}}>No content stored</div>}
+        </div>
+      </div>}
+    </div>
+  );
+}
+
+/* ── Root ── */
+function App(){
+  const [scr,setScr]=useState("splash");
+  const [user,setUser]=useState(null);
+  const [trips,setTrips]=useState([]);
+  const [cs,setCs]=useState(0);
+  const [at,setAt]=useState(null);
+  const [dark,setDark]=useState(()=>{ try{ return localStorage.getItem("ts_dark")!=="false"; }catch(e){ return true; } });
+  const theme=getT(dark);
+  const toggleTheme=()=>{ const nd=!dark; setDark(nd); try{ localStorage.setItem("ts_dark",String(nd)); }catch(e){} };
+
+  useEffect(()=>{
+    // Inject fonts
+    const link = document.createElement('link');
+    link.rel='stylesheet';
+    link.href='https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Barlow+Condensed:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap';
+    document.head.appendChild(link);
+    // Inject CSS
+    const style = document.createElement('style');
+    style.textContent = `
+      *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+      body{background:#000;}
+      input,select,textarea,button{font-family:'DM Sans',sans-serif;}
+      input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;}
+      ::placeholder{color:rgba(255,255,255,0.25);}
+      ::-webkit-scrollbar{width:0;}
+      @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+      @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+      @keyframes scaleIn{from{opacity:0;transform:scale(0.88)}to{opacity:1;transform:scale(1)}}
+      @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+      @keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+      .fade-up{animation:fadeUp 0.55s cubic-bezier(.22,1,.36,1) both}
+      .fade-in{animation:fadeIn 0.45s ease both}
+      .scale-in{animation:scaleIn 0.4s cubic-bezier(.34,1.56,.64,1) both}
+      .btn-press:active{transform:scale(0.97);transition:transform 0.1s;}
+      .tag-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:99px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);font-size:13px;cursor:pointer;transition:all 0.18s;}
+      .tag-chip.active{background:#fff;color:#000;border-color:#fff;font-weight:600;}
+      .tag-chip .remove{font-size:14px;color:rgba(0,0,0,0.5);cursor:pointer;}
+    `;
+    document.head.appendChild(style);
+    return ()=>{ try{document.head.removeChild(link);document.head.removeChild(style);}catch(e){} };
+  }, []);
+
+  useEffect(()=>{ const u=loadUser(); if(u?.name)setUser(u); setTrips(loadTrips()); },[]);
+  const go=t=>{ setAt(t); setScr("dash"); };
+  const splashDone=()=>{ const u=loadUser(); if(u?.name){setUser(u);setTrips(loadTrips());setScr("home");}else setScr("signin"); };
+  const signIn=()=>setScr("profile");
+  const profile=d=>{ setUser(d); saveUser(d); setScr("home"); };
+  const openTrip=t=>{ const all=loadTrips(); go(all.find(x=>x.id===t.id)||t); };
+  const tripCreated=t=>{ setAt(t); setCs(3); };
+  const goToTrip=()=>{ setCs(0); go(at); };
+  const backHome=()=>{ setAt(null); setTrips(loadTrips()); setScr("home"); };
+  const updUser=u=>{ setUser(u); saveUser(u); };
+
+  return(
+    <ThemeCtx.Provider value={theme}>
+      <div style={{background:theme.bg,minHeight:"100vh",transition:"background 0.3s"}}>
+        {scr==="splash"&&<Splash onDone={splashDone}/>}
+        {scr==="signin"&&<SignIn onDone={signIn}/>}
+        {scr==="profile"&&<ProfileSetup onDone={profile}/>}
+        {scr==="home"&&user&&cs===0&&<Home user={user} trips={trips} onCreate={()=>setCs(1)} onOpen={openTrip} onUpdateUser={updUser} toggleTheme={toggleTheme} dark={dark}/>}
+        {scr==="home"&&user&&cs===1&&<CreateTrip user={user} onDone={tripCreated} onBack={()=>setCs(0)}/>}
+        {cs===3&&at&&<TripCreated trip={at} onGo={goToTrip}/>}
+        {scr==="dash"&&at&&user&&<Dashboard trip={at} user={user} onBack={backHome} toggleTheme={toggleTheme} dark={dark}/>}
+      </div>
+    </ThemeCtx.Provider>
+  );
+}
+
+
+    function App(){
+      const [scr,setScr]=useState("splash");
+      const [user,setUser]=useState(null);
+      const [trips,setTrips]=useState([]);
+      const [cs,setCs]=useState(0);
+      const [at,setAt]=useState(null);
+      const [dark,setDark]=useState(()=>{ try{ return localStorage.getItem("ts_dark")!=="false"; }catch(e){ return true; } });
+      const theme=getT(dark);
+      const toggleTheme=()=>{ const nd=!dark; setDark(nd); try{ localStorage.setItem("ts_dark",String(nd)); }catch(e){} };
+
+      useEffect(()=>{
+        // Inject fonts
+        const link=document.createElement("link");
+        link.rel="stylesheet";
+        link.href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@400;500;600&display=swap";
+        document.head.appendChild(link);
+        const style=document.createElement("style");
+        style.textContent="*{box-sizing:border-box;} input,select,textarea,button{font-family:'DM Sans',sans-serif;} ::placeholder{color:rgba(255,255,255,0.25);}";
+        document.head.appendChild(style);
+      },[]);
+
+      const go=t=>{ setAt(t); setScr("dash"); };
+      const splashDone=()=>{
+        const u=loadUser();
+        if(u?.name){ setUser(u); setTrips(loadTrips()); setScr("home"); }
+        else setScr("signin");
+      };
+      const signIn=()=>setScr("profile");
+      const profile=async(d)=>{
+        setUser(d); saveUser(d); setScr("home");
+        if(window._fbUser?.uid) fbSaveUser(window._fbUser.uid,{name:d.name,gender:d.gender,city:d.city,email:d.email||"",photo:d.photo||null}).catch(()=>{});
+      };
+      const openTrip=t=>{ const all=loadTrips(); go(all.find(x=>x.id===t.id)||t); };
+      const tripCreated=t=>{ setAt(t); setCs(3); };
+      const goToTrip=()=>{ setCs(0); go(at); };
+      const backHome=()=>{ setAt(null); setTrips(loadTrips()); setScr("home"); };
+      const updUser=u=>{
+        setUser(u); saveUser(u);
+        if(window._fbUser?.uid) fbSaveUser(window._fbUser.uid,{photo:u.photo||null,name:u.name}).catch(()=>{});
+      };
+
+      return(
+        <ThemeCtx.Provider value={theme}>
+          <div style={{background:theme.bg,minHeight:"100vh",transition:"background 0.3s"}}>
+            {scr==="splash"&&<Splash onDone={splashDone}/>}
+            {scr==="signin"&&<SignIn onDone={signIn}/>}
+            {scr==="profile"&&<ProfileSetup onDone={profile}/>}
+            {scr==="home"&&user&&cs===0&&<Home user={user} trips={trips} onCreate={()=>setCs(1)} onOpen={openTrip} onUpdateUser={updUser} toggleTheme={toggleTheme} dark={dark}/>}
+            {scr==="home"&&user&&cs===1&&<CreateTrip user={user} onDone={tripCreated} onBack={()=>setCs(0)}/>}
+            {cs===3&&at&&<TripCreated trip={at} onGo={goToTrip}/>}
+            {scr==="dash"&&at&&user&&<Dashboard trip={at} user={user} onBack={backHome} toggleTheme={toggleTheme} dark={dark}/>}
+          </div>
+        </ThemeCtx.Provider>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App/>);
+  </script>
+</body>
+</html>
