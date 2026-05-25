@@ -506,8 +506,9 @@ function CreateTrip({user,onDone,onBack}){
   const addF=()=>{ const n=nf.trim(); if(!n)return; if(friends.includes(n)){setFe("Already added");return;} if(friends.length>=10){setFe("Max 10");return;} setFriends(p=>[...p,n]); setNf(""); setFe(""); };
   const create=async()=>{
     const trip={id:genId(),tripName:tn.trim(),destination:dest.trim(),startDate:sd,endDate:ed,cover:cov,coverPhoto:coverPhoto||null,currency:curr,friends,expenses:[],itinerary:[],vault:[],notes:[],activity:[],trash:[],memberPhotos:{[user.name]:user.photo||null},createdAt:Date.now()};
-    const all=[...loadTrips(),trip]; saveTrips(all);
-    try{ await window.fbSaveTrip(trip); }catch(e){ console.error(e); }
+    const all=[...loadTrips(),trip];
+    saveTrips(all);
+    try{ await window.fbSaveTrip(trip); console.log("Trip saved!",trip.id); }catch(e){ console.error("FB error:",e); }
     onDone(trip);
   };
   const onCoverFile=e=>{ const f=e.target.files[0]; e.target.value=""; if(!f)return; if(f.size>5*1024*1024){return;} const rd=new FileReader(); rd.onload=ev=>{ setCoverPhoto(ev.target.result); setCoverLoaded(false); }; rd.readAsDataURL(f); };
@@ -1439,7 +1440,11 @@ function App(){
   const signIn=()=>setScr("profile");
   const profile=d=>{ setUser(d); saveUser(d); setScr("home"); };
   const openTrip=t=>{ const all=loadTrips(); go(all.find(x=>x.id===t.id)||t); };
-  const tripCreated=t=>{ setAt(t); setCs(3); };
+  const tripCreated=t=>{
+    setAt(t);
+    setTrips(loadTrips()); // Update trips list immediately
+    setCs(3);
+  };
   const goToTrip=()=>{ setCs(0); go(at); };
   const backHome=()=>{ setAt(null); setTrips(loadTrips()); setScr("home"); };
   const updUser=u=>{ setUser(u); saveUser(u); };
