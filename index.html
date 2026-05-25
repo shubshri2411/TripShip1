@@ -508,11 +508,12 @@ function CreateTrip({user,onDone,onBack}){
   const today=new Date().toISOString().split("T")[0];
   const inp={padding:"13px 14px",background:"rgba(255,255,255,0.07)",border:`1px solid ${T.border}`,borderRadius:12,color:T.text,fontSize:15,outline:"none",fontFamily:T.fontBody,width:"100%",boxSizing:"border-box"};
   const addF=()=>{ const n=nf.trim(); if(!n)return; if(friends.includes(n)){setFe("Already added");return;} if(friends.length>=10){setFe("Max 10");return;} setFriends(p=>[...p,n]); setNf(""); setFe(""); };
-  const create=async()=>{
+  const create=()=>{
     const trip={id:genId(),tripName:tn.trim(),destination:dest.trim(),startDate:sd,endDate:ed,cover:cov,coverPhoto:coverPhoto||null,currency:curr,friends,expenses:[],itinerary:[],vault:[],notes:[],activity:[],trash:[],memberPhotos:{[user.name]:user.photo||null},createdAt:Date.now()};
     const all=[...loadTrips(),trip];
     saveTrips(all);
-    try{ await window.fbSaveTrip(trip); console.log("Trip saved!",trip.id); }catch(e){ console.error("FB error:",e); }
+    // Firebase save in background - don't block UI
+    if(window.fbSaveTrip){ window.fbSaveTrip(trip).catch(e=>console.error("FB:",e)); }
     onDone(trip);
   };
   const onCoverFile=e=>{ const f=e.target.files[0]; e.target.value=""; if(!f)return; if(f.size>5*1024*1024){return;} const rd=new FileReader(); rd.onload=ev=>{ setCoverPhoto(ev.target.result); setCoverLoaded(false); }; rd.readAsDataURL(f); };
