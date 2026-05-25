@@ -364,7 +364,7 @@ function ProfileSetup({onDone}){
 }
 
 /* ── Home ── */
-function Home({user,trips,onCreate,onOpen,onUpdateUser,toggleTheme,dark}){
+function Home({user,trips,onCreate,onOpen,onUpdateUser,toggleTheme,dark,onSignOut}){
   const T=useT();
   const [join,setJoin]=useState(false); const [jUrl,setJUrl]=useState(""); const [jErr,setJErr]=useState("");
   const [dpMenu,setDpMenu]=useState(false); const [rawDp,setRawDp]=useState(null); const [dpPrev,setDpPrev]=useState(false); const [dpErr,setDpErr]=useState(""); const [dpLoaded,setDpLoaded]=useState(false);
@@ -430,6 +430,10 @@ function Home({user,trips,onCreate,onOpen,onUpdateUser,toggleTheme,dark}){
               <div style={{position:"absolute",bottom:0,right:0,width:16,height:16,borderRadius:"50%",background:T.accent,border:"2px solid #000",display:"flex",alignItems:"center",justifyContent:"center",fontSize:8}}>✏️</div>
             </div>
             {dpMenu&&<div><div onClick={()=>setDpMenu(false)} style={{position:"fixed",inset:0,zIndex:98}}/><div style={{position:"absolute",top:52,right:0,zIndex:99,background:T.surface2,border:`1px solid ${T.border2}`,borderRadius:12,overflow:"hidden",minWidth:160,boxShadow:"0 8px 24px rgba(0,0,0,0.5)"}}><button onClick={()=>{setDpMenu(false);dpRef.current?.click();}} style={{width:"100%",padding:"13px 16px",background:"none",border:"none",color:T.text,fontSize:14,fontWeight:600,cursor:"pointer",textAlign:"left"}}>📷 Change photo</button>
+                <div style={{height:1,background:T.border}}/>
+                <button onClick={()=>{setDpMenu(false);toggleTheme();}} style={{width:"100%",padding:"13px 16px",background:"none",border:"none",color:T.text,fontSize:14,fontWeight:600,cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",justifyContent:"space-between"}}><span>{dark?"☀️ Light Mode":"🌙 Dark Mode"}</span></button>
+                <div style={{height:1,background:T.border}}/>
+                <button onClick={()=>{setDpMenu(false); onSignOut();}} style={{width:"100%",padding:"13px 16px",background:"none",border:"none",color:"#f87171",fontSize:14,fontWeight:600,cursor:"pointer",textAlign:"left"}}>Sign Out</button>
                 <div style={{height:1,background:T.border}}/>
                 <button onClick={()=>{setDpMenu(false);toggleTheme();}} style={{width:"100%",padding:"13px 16px",background:"none",border:"none",color:T.text,fontSize:14,fontWeight:600,cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",justifyContent:"space-between"}}><span>{dark?"☀️ Light Mode":"🌙 Dark Mode"}</span><span style={{fontSize:11,background:T.surface,border:`1px solid ${T.border}`,borderRadius:99,padding:"2px 8px",color:T.textSub}}>{dark?"ON":"OFF"}</span></button>
                 </div></div>}
@@ -1445,9 +1449,23 @@ function App(){
     setTrips(loadTrips()); // Update trips list immediately
     setCs(3);
   };
-  const goToTrip=()=>{ setCs(0); go(at); };
-  const backHome=()=>{ setAt(null); setTrips(loadTrips()); setScr("home"); };
+  const goToTrip=()=>{
+    setTrips(loadTrips());
+    setCs(0);
+    go(at);
+  };
+  const backHome=()=>{
+    setAt(null);
+    setCs(0);
+    setTrips(loadTrips());
+    setScr("home");
+  };
   const updUser=u=>{ setUser(u); saveUser(u); };
+  const signOut=()=>{
+    try{ localStorage.clear(); }catch(e){}
+    setUser(null); setTrips([]); setAt(null); setCs(0);
+    setScr("signin");
+  };
 
   return(
     <ThemeCtx.Provider value={theme}>
@@ -1455,9 +1473,9 @@ function App(){
         {scr==="splash"&&<Splash onDone={splashDone}/>}
         {scr==="signin"&&<SignIn onDone={signIn}/>}
         {scr==="profile"&&<ProfileSetup onDone={profile}/>}
-        {scr==="home"&&user&&cs===0&&<Home user={user} trips={trips} onCreate={()=>setCs(1)} onOpen={openTrip} onUpdateUser={updUser} toggleTheme={toggleTheme} dark={dark}/>}
+        {scr==="home"&&user&&cs===0&&<Home user={user} trips={trips} onCreate={()=>setCs(1)} onOpen={openTrip} onUpdateUser={updUser} toggleTheme={toggleTheme} dark={dark} onSignOut={signOut}/>}
         {scr==="home"&&user&&cs===1&&<CreateTrip user={user} onDone={tripCreated} onBack={()=>setCs(0)}/>}
-        {cs===3&&at&&<TripCreated trip={at} onGo={goToTrip}/>}
+        {scr==="home"&&cs===3&&at&&<TripCreated trip={at} onGo={goToTrip}/>}
         {scr==="dash"&&at&&user&&<Dashboard trip={at} user={user} onBack={backHome} toggleTheme={toggleTheme} dark={dark}/>}
       </div>
     </ThemeCtx.Provider>
